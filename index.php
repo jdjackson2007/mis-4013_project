@@ -1,16 +1,17 @@
 <?php
 $pageTitle = "Lantern Corps Home";
+include "view-header.php";
 ?>
 
 <!-- Full-page container with background -->
-<div class="container-fluid text-center text-white" style="background-image: url('https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg'); background-size: cover; background-position: center; height: 100vh; margin: 0; padding: 0;">
+<div class="container-fluid text-center text-white" style="background-image: url('https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg'); background-size: cover; background-position: center; height: 100vh;">
 
     <!-- Buttons Section -->
     <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
 
         <!-- Home Button -->
-        <div class="text-center mb-4">
-            <a href="index.php" class="btn btn-light btn-lg w-75 text-dark">Home</a> <!-- Longer Home Button -->
+        <div class="text-center mb-4 w-75">
+            <a href="index.php" class="btn btn-light btn-lg w-100 text-dark">Home</a> <!-- Full-width button -->
         </div>
 
         <!-- Navigation Buttons Section -->
@@ -28,24 +29,5 @@ $pageTitle = "Lantern Corps Home";
     </div>
 </div>
 
-<!-- Additional CSS -->
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
-
-    .container-fluid {
-        margin: 0;
-        padding: 0;
-    }
-
-    .btn-lg {
-        padding: 15px 20px; /* Make buttons larger if necessary */
-    }
-
-    .text-dark {
-        color: black !important; /* Ensure text contrast */
-    }
-</style>
+<!-- Footer -->
+<?php include "view-footer.php"; ?>
