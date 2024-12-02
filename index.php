@@ -10,13 +10,6 @@ include "view-header.php";
         <p class="lead">Explore the Corps, their emotional spectrums, and the heroes and villains who define them.</p>
     </div>
 
-    <!-- Image Section -->
-    <div class="text-center my-4">
-        <img src="https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg" 
-             class="img-fluid rounded" 
-             alt="Lantern Corps Spectrum">
-    </div>
-
     <!-- Navigation Links -->
     <div class="row mt-5 text-center">
         <div class="col-md-4">
@@ -29,6 +22,12 @@ include "view-header.php";
             <a href="about.php" class="btn btn-outline-info btn-lg w-100 mb-3">About the Project</a>
         </div>
     </div>
+</div>
+ <!-- Image Section -->
+<div class="text-center my-4">
+    <img src="https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg" 
+         class="img-fluid rounded" 
+         alt="Lantern Corps Spectrum">
 </div>
 
 <!-- Footer -->
