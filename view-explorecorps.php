@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+      <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="explorecorps.php">Explore Corps</a></li>
+                                <li><a class="dropdown-item" href="notable_lanterns.php">Notable Lanterns</a></li>
+                                <li><a class="dropdown-item" href="about.php">About</a></li>
+                            </ul>
+                        </li>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Lantern Corps</title>
