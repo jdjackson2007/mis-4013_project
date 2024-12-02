@@ -17,7 +17,7 @@ include "view-header.php";
         <!-- Navigation Buttons Section -->
         <div class="row w-75">
             <div class="col-md-4">
-                <a href="corps.php" class="btn btn-warning btn-lg w-100 mb-3">Explore Corps</a> <!-- Yellow button -->
+                <a href="explorecorps.php" class="btn btn-warning btn-lg w-100 mb-3">Explore Corps</a> <!-- Yellow button -->
             </div>
             <div class="col-md-4">
                 <a href="notable_lanterns.php" class="btn btn-light btn-lg w-100 mb-3 text-dark">Notable Lanterns</a> <!-- White button -->
