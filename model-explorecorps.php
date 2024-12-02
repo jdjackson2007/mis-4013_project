@@ -1,11 +1,13 @@
 <?php
 // model-explorecorps.php
 function get_db_connection() {
-    $conn = new mysqli("your-database-host", "your-username", "your-password", "your-database-name");
+    $conn = new mysqli("mis4013project.mysql.database.azure.com", "jdjackson2007", "DougDoug07&&", "lantern_corps"); // Replace "lantern_corps" with your actual database name
 
+    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
     return $conn;
 }
 
