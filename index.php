@@ -1,21 +1,19 @@
 <?php
 $pageTitle = "Lantern Corps Home";
-include "view-header.php";
 ?>
 
 <!-- Full-page container with background -->
-<div class="container-fluid text-center text-white" style="background-image: url('https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg'); background-size: cover; background-position: center; height: 100vh;">
+<div class="container-fluid text-center text-white" style="background-image: url('https://3.bp.blogspot.com/-UbPydZyEqig/USxPpJVNBJI/AAAAAAAAE_Q/oKj7rgMDbzg/s1600/Lantern_Corps_Spectrum_by_tytemp1980.jpg'); background-size: cover; background-position: center; height: 100vh; margin: 0; padding: 0;">
 
     <!-- Header Section -->
     <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
-        <h1 class="display-4 mb-4" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">Lantern Corps Database</h1>
-        <p class="lead mb-5" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-            Explore the Corps, their emotional spectrums, and the heroes and villains who define them.
-        </p>
-
-        <!-- Home Button with Split Colors -->
+        
+        <!-- Home Button with Halved Letters -->
         <div class="text-center mb-4">
-            <a href="index.php" class="btn btn-lg w-50 split-btn">Home</a>
+            <a href="index.php" class="btn btn-lg split-btn w-75">
+                <span style="display: block; font-size: 24px;">HOME</span>
+                <span style="display: block; font-size: 16px;">HOME</span>
+            </a>
         </div>
 
         <!-- Navigation Buttons Section -->
@@ -33,10 +31,31 @@ include "view-header.php";
     </div>
 </div>
 
-<!-- Footer -->
-<?php include "view-footer.php"; ?>
-
-<!-- Additional CSS for Split Home Button -->
+<!-- Additional CSS for Styling -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    .split-btn {
+        color: white;
+        background-color: black;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 20px;
+        border: none;
+        position: relative;
+    }
+    .split-btn span:first-child {
+        margin-bottom: 10px;
+    }
+    .split-btn:hover {
+        background-color: gray;
+        color: white;
+    }
+</style>
+ome Button -->
 <style>
     .split-btn {
         position: relative;
