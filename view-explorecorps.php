@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Pages
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="explorecorps.php">Explore Corps</a></li>
-                                <li><a class="dropdown-item" href="notable_lanterns.php">Notable Lanterns</a></li>
-                                <li><a class="dropdown-item" href="about.php">About</a></li>
-                            </ul>
-                        </li>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Lantern Corps</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-dark text-white">
+
+<!-- Navbar with dropdown -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.php">Lantern Corps</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php">Home</a></li>
+                        <li><a class="dropdown-item" href="explorecorps.php">Explore Corps</a></li>
+                        <li><a class="dropdown-item" href="notable_lanterns.php">Notable Lanterns</a></li>
+                        <li><a class="dropdown-item" href="about.php">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container my-5">
     <h1 class="text-center mb-4">Explore the Lantern Corps</h1>
@@ -28,21 +43,40 @@
 
     <!-- Lantern Corps Cards -->
     <div class="row">
-        <?php foreach ($corpsData as $corps): ?>
+        <?php
+        // Assuming you have a database connection `$db`
+        $query = "
+            SELECT 
+                corps.Corps_Name,
+                corps.Corps_Description,
+                corps.Corps_Image_URL,
+                emotions.Emotion_Name AS CorpsEmotion,
+                headquarters.HQ_Name AS CorpsHQ
+            FROM 
+                Corps corps
+            JOIN 
+                Emotions emotions ON corps.CorpsEmotion_ID = emotions.Emotion_ID
+            JOIN 
+                Headquarters headquarters ON corps.CorpsHQ_ID = headquarters.HQ_ID
+        ";
+        $result = $db->query($query);
+
+        while ($corps = $result->fetch_assoc()):
+        ?>
             <div class="col-md-4 mb-4">
                 <div class="card text-center bg-light">
                     <img src="<?php echo htmlspecialchars($corps['Corps_Image_URL']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($corps['Corps_Name']); ?>">
                     <div class="card-body">
                         <h5 class="card-title text-dark"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
                         <p class="card-text text-dark">
-                            Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion_ID']); ?><br>
-                            Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ_ID']); ?><br>
+                            Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion']); ?><br>
+                            Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ']); ?><br>
                             <?php echo htmlspecialchars($corps['Corps_Description']); ?>
                         </p>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php endwhile; ?>
     </div>
 </div>
 
