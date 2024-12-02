@@ -20,7 +20,6 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="explorecorps.php">Explore Corps</a></li>
-                        <li class="nav-item"><a class="nav-link" href="corps.php">Corps</a></li>
                         <li class="nav-item"><a class="nav-link" href="notable_lanterns.php">Notable Lanterns</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
                     </ul>
