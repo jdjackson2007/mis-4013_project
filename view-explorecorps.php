@@ -106,11 +106,6 @@
                         <label for="corpsDescription" class="form-label">Description</label>
                         <textarea class="form-control" id="corpsDescription" name="corpsDescription" rows="3" required></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label for="corpsImage" class="form-label">Image URL</label>
-                        <input type="url" class="form-control" id="corpsImage" name="corpsImage" required>
-                    </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add Corps</button>
