@@ -13,7 +13,6 @@ function get_db_connection() {
     return $conn;
 }
 
-
 function getAllCorps() {
     $conn = get_db_connection();
 
@@ -50,9 +49,8 @@ function getAllCorps() {
  * @param int $emotion Emotion ID
  * @param int $hq Headquarters ID
  * @param string $description Corps description
- * @param string $imageUrl Corps image URL
  */
-function addNewCorps($name, $emotion, $hq, $description, $imageUrl) {
+function addNewCorps($name, $emotion, $hq, $description) {
     $conn = get_db_connection();
 
     // Prepare the SQL statement
@@ -62,7 +60,7 @@ function addNewCorps($name, $emotion, $hq, $description, $imageUrl) {
     ");
 
     // Bind parameters
-    $stmt->bind_param("siiss", $name, $emotion, $hq, $description);
+    $stmt->bind_param("siis", $name, $emotion, $hq, $description);
 
     // Execute the statement
     if (!$stmt->execute()) {
