@@ -8,7 +8,6 @@
 </head>
 <body class="bg-dark text-white">
 
-<!-- Navbar with dropdown -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Lantern Corps</a>
@@ -38,18 +37,19 @@
 
     <!-- Add Corps Button -->
     <div class="text-end mb-4">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCorpsModal">Add Lantern Corps</button>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCorpsModal">
+            Add Lantern Corps
+        </button>
     </div>
 
     <!-- Lantern Corps Cards -->
     <div class="row">
         <?php
-        // Assuming you have a database connection `$db`
+        // Query for fetching Lantern Corps data
         $query = "
             SELECT 
                 corps.Corps_Name,
                 corps.Corps_Description,
-                corps.Corps_Image_URL,
                 emotions.Emotion_Name AS CorpsEmotion,
                 headquarters.HQ_Name AS CorpsHQ
             FROM 
@@ -61,22 +61,24 @@
         ";
         $result = $db->query($query);
 
-        while ($corps = $result->fetch_assoc()):
+        if ($result->num_rows > 0):
+            while ($corps = $result->fetch_assoc()):
         ?>
-            <div class="col-md-4 mb-4">
-                <div class="card text-center bg-light">
-                    <img src="<?php echo htmlspecialchars($corps['Corps_Image_URL']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($corps['Corps_Name']); ?>">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
-                        <p class="card-text text-dark">
-                            Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion']); ?><br>
-                            Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ']); ?><br>
-                            <?php echo htmlspecialchars($corps['Corps_Description']); ?>
-                        </p>
-                    </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center bg-light">
+                <div class="card-body">
+                    <h5 class="card-title text-dark"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
+                    <p class="card-text text-dark">
+                        Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion']); ?><br>
+                        Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ']); ?><br>
+                        <?php echo htmlspecialchars($corps['Corps_Description']); ?>
+                    </p>
                 </div>
             </div>
-        <?php endwhile; ?>
+        </div>
+        <?php endwhile; else: ?>
+        <p class="text-center">No Lantern Corps available. Add a new Corps using the button above.</p>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -92,20 +94,29 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="corpsName" class="form-label">Corps Name</label>
-                        <input type="text" class="form-control" id="corpsName" name="corpsName" required>
+                        <input type="text" class="form-control" id="corpsName" name="corpsName" required maxlength="255">
                     </div>
                     <div class="mb-3">
                         <label for="corpsEmotion" class="form-label">Emotion</label>
-                        <input type="text" class="form-control" id="corpsEmotion" name="corpsEmotion" required>
+                        <select class="form-select" id="corpsEmotion" name="corpsEmotion" required>
+                            <option value="1">Willpower</option>
+                            <option value="2">Fear</option>
+                            <!-- Add more options dynamically -->
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="corpsHQ" class="form-label">Headquarters</label>
-                        <input type="text" class="form-control" id="corpsHQ" name="corpsHQ" required>
+                        <select class="form-select" id="corpsHQ" name="corpsHQ" required>
+                            <option value="1">Oa</option>
+                            <option value="2">Qward</option>
+                            <!-- Add more options dynamically -->
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="corpsDescription" class="form-label">Description</label>
                         <textarea class="form-control" id="corpsDescription" name="corpsDescription" rows="3" required></textarea>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add Corps</button>
