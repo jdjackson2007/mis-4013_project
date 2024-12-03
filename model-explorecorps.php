@@ -1,10 +1,9 @@
 <?php
-
 function get_db_connection() {
     $conn = new mysqli("mis4013project.mysql.database.azure.com", "jdjackson2007", "DougDoug07&&", "lantern_corps");
 
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        die("Database Connection Failed: " . $conn->connect_error);
     }
 
     // Set character set to UTF-8
@@ -15,8 +14,6 @@ function get_db_connection() {
 
 function getAllCorps() {
     $conn = get_db_connection();
-
-    // Query to fetch corps data along with Emotion and HQ names
     $query = "
         SELECT 
             corps_table.Corps_ID,
@@ -30,45 +27,71 @@ function getAllCorps() {
     ";
 
     $result = $conn->query($query);
-    $corpsData = [];
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $corpsData[] = $row;
-        }
+    if (!$result) {
+        die("Error Fetching Corps Data: " . $conn->error);
+    }
+
+    $corpsData = [];
+    while ($row = $result->fetch_assoc()) {
+        $corpsData[] = $row;
     }
 
     $conn->close();
     return $corpsData;
 }
 
-/**
- * Add a new Lantern Corps to the database.
- *
- * @param string $name Corps name
- * @param int $emotion Emotion ID
- * @param int $hq Headquarters ID
- * @param string $description Corps description
- */
+function getAllEmotions() {
+    $conn = get_db_connection();
+    $query = "SELECT Emotion_ID, Emotion_Name FROM emotions_table";
+    $result = $conn->query($query);
+
+    if (!$result) {
+        die("Error Fetching Emotions: " . $conn->error);
+    }
+
+    $emotions = [];
+    while ($row = $result->fetch_assoc()) {
+        $emotions[] = $row;
+    }
+
+    $conn->close();
+    return $emotions;
+}
+
+function getAllHeadquarters() {
+    $conn = get_db_connection();
+    $query = "SELECT HQ_ID, HQ_Name FROM headquarters_table";
+    $result = $conn->query($query);
+
+    if (!$result) {
+        die("Error Fetching Headquarters: " . $conn->error);
+    }
+
+    $headquarters = [];
+    while ($row = $result->fetch_assoc()) {
+        $headquarters[] = $row;
+    }
+
+    $conn->close();
+    return $headquarters;
+}
+
 function addNewCorps($name, $emotion, $hq, $description) {
     $conn = get_db_connection();
 
-    // Prepare the SQL statement
     $stmt = $conn->prepare("
         INSERT INTO corps_table (Corps_Name, CorpsEmotion_ID, CorpsHQ_ID, Corps_Description)
         VALUES (?, ?, ?, ?)
     ");
 
-    // Bind parameters
     $stmt->bind_param("siis", $name, $emotion, $hq, $description);
 
-    // Execute the statement
     if (!$stmt->execute()) {
-        die("Error: " . $stmt->error);
+        die("Error Adding Corps: " . $stmt->error);
     }
 
     $stmt->close();
     $conn->close();
 }
-
 ?>
