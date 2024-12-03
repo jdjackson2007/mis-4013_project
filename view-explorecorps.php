@@ -44,40 +44,23 @@
 
     <!-- Lantern Corps Cards -->
     <div class="row">
-        <?php
-        // Query for fetching Lantern Corps data
-        $query = "
-            SELECT 
-                corps.Corps_Name,
-                corps.Corps_Description,
-                emotions.Emotion_Name AS CorpsEmotion,
-                headquarters.HQ_Name AS CorpsHQ
-            FROM 
-                Corps corps
-            JOIN 
-                Emotions emotions ON corps.CorpsEmotion_ID = emotions.Emotion_ID
-            JOIN 
-                Headquarters headquarters ON corps.CorpsHQ_ID = headquarters.HQ_ID
-        ";
-        $result = $db->query($query);
-
-        if ($result->num_rows > 0):
-            while ($corps = $result->fetch_assoc()):
-        ?>
-        <div class="col-md-4 mb-4">
-            <div class="card text-center bg-light">
-                <div class="card-body">
-                    <h5 class="card-title text-dark"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
-                    <p class="card-text text-dark">
-                        Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion']); ?><br>
-                        Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ']); ?><br>
-                        <?php echo htmlspecialchars($corps['Corps_Description']); ?>
-                    </p>
+        <?php if (!empty($corpsData)): ?>
+            <?php foreach ($corpsData as $corps): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
+                            <p class="card-text text-dark">
+                                Emotion: <?php echo htmlspecialchars($corps['CorpsEmotion']); ?><br>
+                                Headquarters: <?php echo htmlspecialchars($corps['CorpsHQ']); ?><br>
+                                <?php echo htmlspecialchars($corps['Corps_Description']); ?>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <?php endwhile; else: ?>
-        <p class="text-center">No Lantern Corps available. Add a new Corps using the button above.</p>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="text-center">No Lantern Corps available. Add a new Corps using the button above.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -99,17 +82,21 @@
                     <div class="mb-3">
                         <label for="corpsEmotion" class="form-label">Emotion</label>
                         <select class="form-select" id="corpsEmotion" name="corpsEmotion" required>
-                            <option value="1">Willpower</option>
-                            <option value="2">Fear</option>
-                            <!-- Add more options dynamically -->
+                            <?php foreach ($emotions as $emotion): ?>
+                                <option value="<?php echo $emotion['Emotion_ID']; ?>">
+                                    <?php echo htmlspecialchars($emotion['Emotion_Name']); ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="corpsHQ" class="form-label">Headquarters</label>
                         <select class="form-select" id="corpsHQ" name="corpsHQ" required>
-                            <option value="1">Oa</option>
-                            <option value="2">Qward</option>
-                            <!-- Add more options dynamically -->
+                            <?php foreach ($headquarters as $hq): ?>
+                                <option value="<?php echo $hq['HQ_ID']; ?>">
+                                    <?php echo htmlspecialchars($hq['HQ_Name']); ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
