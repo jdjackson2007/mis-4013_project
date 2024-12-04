@@ -9,43 +9,38 @@ if ($corpsList->num_rows > 0): ?>
             </div>
         </div>
 
-        <!-- Table Section -->
+        <!-- Corps Section -->
         <div class="row mt-4">
-            <div class="col">
-                <div class="table-section bg-dark p-4 rounded">
-                    <h2 class="text-warning">Corps Details</h2>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-dark">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Color</th>
-                                    <th>Emotion</th>
-                                    <th>Description</th>
-                                    <th>HQ Planet</th>
-                                    <th>HQ Sector</th>
-                                    <th>Sector Number</th>
-                                    <th>Sector Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($corps = $corpsList->fetch_assoc()): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($corps['Corps_Name']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsEmotion_Name']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['Corps_Description']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsHQ_Planet']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></td>
-                                        <td><?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
+            <?php
+            $seenCorps = []; // To track already displayed Corps
+            while ($corps = $corpsList->fetch_assoc()):
+                // Skip duplicates
+                if (in_array($corps['Corps_Name'], $seenCorps)) {
+                    continue;
+                }
+                $seenCorps[] = $corps['Corps_Name'];
+            ?>
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
+                            <p><strong>Color:</strong> <?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></p>
+                            <p><strong>Emotion:</strong> <?php echo htmlspecialchars($corps['CorpsEmotion_Name']); ?></p>
+                            <p><strong>Description:</strong> <?php echo htmlspecialchars($corps['Corps_Description']); ?></p>
+                            <p><strong>HQ Planet:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Planet']); ?></p>
+                            <p><strong>HQ Sector:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></p>
+                            <p><strong>Sector Number:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></p>
+                            <p><strong>Sector Description:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></p>
+                            <hr>
+                            <h6>Oaths</h6>
+                            <p><strong>Main Oath:</strong> <?php echo htmlspecialchars($corps['Corps_Oath']); ?></p>
+                            <?php if (!empty($corps['Alternate_Oath'])): ?>
+                                <p><strong>Alternate Oath:</strong> <?php echo htmlspecialchars($corps['Alternate_Oath']); ?></p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endwhile; ?>
         </div>
     </div>
 <?php else: ?>
