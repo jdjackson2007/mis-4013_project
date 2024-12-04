@@ -1,61 +1,92 @@
 <?php
-require_once 'util-db.php'; // Include the database connection utility
+require_once 'view-header.php'; // Include the header for consistency
+?>
 
-/**
- * Fetch all Lantern Corps data with required joins
- * 
- * @return mysqli_result The result set containing Corps data
- * @throws Exception if the query fails
- */
-function getCorpsData() {
-    try {
-        $conn = get_db_connection(); // Get the database connection
+<div class="container">
+    <!-- Title Section -->
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center text-warning">Lantern Corps</h1>
+            <p class="text-center">Explore the details of the Corps, their colors, emotions, and more.</p>
+        </div>
+    </div>
 
-        // SQL query to fetch data from all relevant tables
-        $query = "
-            SELECT 
-                c.Corps_ID, 
-                c.Corps_Name, 
-                c.Corps_Description, 
-                c.Corps_Oath,
-                cc.CorpsColor_Name, 
-                ce.CorpsEmotion_Name, 
-                chq.CorpsHQ_Planet, 
-                chq.CorpsHQ_Sector,
-                cs.CorpsSectors_SectorNumber, 
-                cs.CorpsSectors_Description
-            FROM corps_table c
-            LEFT JOIN corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
-            LEFT JOIN corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
-            LEFT JOIN corpshq_table chq ON c.CorpsHQ_ID = chq.CorpsHQ_ID
-            LEFT JOIN corpssectors_table cs ON chq.CorpsHQ_Sector = cs.CorpsSectors_SectorNumber
-        ";
+    <!-- Table Section -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="table-section bg-dark p-4 rounded">
+                <h2 class="text-warning">Corps Details</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Color</th>
+                                <th>Emotion</th>
+                                <th>Description</th>
+                                <th>HQ Planet</th>
+                                <th>HQ Sector</th>
+                                <th>Sector Number</th>
+                                <th>Sector Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $seenCorps = []; // To track duplicate corps
+                            while ($corps = $corpsList->fetch_assoc()):
+                                // Skip duplicates
+                                if (in_array($corps['Corps_Name'], $seenCorps)) {
+                                    continue;
+                                }
+                                $seenCorps[] = $corps['Corps_Name'];
+                            ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($corps['Corps_Name']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsEmotion_Name']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['Corps_Description']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsHQ_Planet']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></td>
+                                    <td><?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Prepare and execute the query
-        $stmt = $conn->prepare($query);
-        if (!$stmt) {
-            throw new Exception("Failed to prepare SQL statement: " . $conn->error);
-        }
+    <!-- Oath Section -->
+    <div class="row mt-5">
+        <div class="col">
+            <h2 class="text-warning">Oaths</h2>
+            <div class="row">
+                <?php
+                // Reset the pointer for oaths
+                $corpsList->data_seek(0);
+                while ($corps = $corpsList->fetch_assoc()):
+                    // Skip duplicates for oaths
+                    if (isset($seenCorps[$corps['Corps_Name'] . '_oath'])) {
+                        continue;
+                    }
+                    $seenCorps[$corps['Corps_Name'] . '_oath'] = true;
+                ?>
+                    <div class="col-md-6 mb-4">
+                        <div class="card bg-dark text-light">
+                            <div class="card-body">
+                                <h5 class="card-title text-warning"><?php echo htmlspecialchars($corps['Corps_Name']); ?> Oath</h5>
+                                <p class="card-text"><?php echo htmlspecialchars($corps['Corps_Oath']); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </div>
+</div>
 
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // If no data is found, throw an exception
-        if ($result->num_rows === 0) {
-            throw new Exception("No data found in the database.");
-        }
-
-        // Close the connection and return the result set
-        $conn->close();
-        return $result;
-
-    } catch (Exception $e) {
-        // Close the connection if it exists
-        if (isset($conn) && $conn->ping()) {
-            $conn->close();
-        }
-        // Re-throw the exception with a meaningful message
-        throw new Exception("Error fetching Corps data: " . $e->getMessage());
-    }
-}
+<?php
+require_once 'view-footer.php'; // Include the footer
 ?>
