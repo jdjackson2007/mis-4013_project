@@ -1,8 +1,6 @@
 <?php
 // model-explore-the-corps.php
 
-require_once 'util-db.php';
-
 // Function to fetch Corps data with all required joins
 function getCorpsData() {
     try {
