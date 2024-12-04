@@ -11,9 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://th.bing.com/th/id/OIP.4GJHntwzdb2rUI3X2KW1wwHaEo?rs=1&pid=ImgDetMain');
+            background-image: url('https://th.bing.com/th/id/OIP.OUilLZt65eM_eE_tGw9H2AHaB9?rs=1&pid=ImgDetMain');
             background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #fff;
             font-family: Arial, sans-serif;
             margin: 0;
