@@ -11,7 +11,7 @@
         <!-- Corps Section -->
         <div class="row mt-4">
             <?php
-            $seenCorps = []; // To track already displayed Corps
+            $seenCorps = []; // Track displayed Corps
             while ($corps = $corpsList->fetch_assoc()):
                 // Skip duplicates
                 if (in_array($corps['Corps_Name'], $seenCorps)) {
@@ -19,17 +19,19 @@
                 }
                 $seenCorps[] = $corps['Corps_Name'];
             ?>
-                <div class="col-md-6 mb-4">
-                    <div class="card bg-dark text-light">
+                <div class="col-md-6 mb-4 corps-card">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-warning"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
-                            <p><strong>Color:</strong> <?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></p>
-                            <p><strong>Emotion:</strong> <?php echo htmlspecialchars($corps['CorpsEmotion_Name']); ?></p>
-                            <p><strong>Description:</strong> <?php echo htmlspecialchars($corps['Corps_Description']); ?></p>
-                            <p><strong>HQ Planet:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Planet']); ?></p>
-                            <p><strong>HQ Sector:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></p>
-                            <p><strong>Sector Number:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></p>
-                            <p><strong>Sector Description:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></p>
+                            <h5 class="corps-name"><?php echo htmlspecialchars($corps['Corps_Name']); ?></h5>
+                            <div class="corps-details">
+                                <p><span class="label">Color:</span> <?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></p>
+                                <p><span class="label">Emotion:</span> <?php echo htmlspecialchars($corps['CorpsEmotion_Name']); ?></p>
+                                <p><span class="label">Description:</span> <?php echo htmlspecialchars($corps['Corps_Description']); ?></p>
+                                <p><span class="label">HQ Planet:</span> <?php echo htmlspecialchars($corps['CorpsHQ_Planet']); ?></p>
+                                <p><span class="label">HQ Sector:</span> <?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></p>
+                                <p><span class="label">Sector Number:</span> <?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></p>
+                                <p><span class="label">Sector Description:</span> <?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
