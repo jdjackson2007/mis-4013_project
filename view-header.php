@@ -29,7 +29,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open Pages Menu">
                         Pages
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="index.php" aria-label="Home">Home</a></li>
                         <li><a class="dropdown-item" href="explorecorps.php" aria-label="Explore Lantern Corps">Explore Corps</a></li>
                         <li><a class="dropdown-item" href="notable_lanterns.php" aria-label="Notable Lanterns">Notable Lanterns</a></li>
@@ -40,6 +40,7 @@
         </div>
     </div>
 </nav>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-QFIMzO4cAHR5FZjN1q0q5w9Iv2lU+jNKaWhb7UNQtbZkJpR0m0sAh6Lzq4RSaUda" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rlc0QzH2cPVG6CUpOBFYUBH1uOdMYTlfNsHNBEd6TKhK/n0LYDxUHOau4ugWQpHt" crossorigin="anonymous"></script>
