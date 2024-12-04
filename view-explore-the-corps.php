@@ -1,28 +1,19 @@
-<?php
-// view-explore-the-corps.php
+<div class="container">
+  <!-- Title Section -->
+  <div class="row">
+    <div class="col">
+       <h1 class="text-center text-warning">Lantern Corps</h1> <!-- Center the title, or use text-left/right as needed -->
+         <p class="text-center">Explore the details of the Corps, their colors, emotions, and more.</p>
+    </div>
+  </div>
 
-function renderCorpsView($corpsList)
-{
-    // Convert result set to an array for reuse in multiple sections
-    $corpsArray = [];
-    while ($corps = $corpsList->fetch_assoc()) {
-        $corpsArray[] = $corps;
-    }
-
-    // Start output buffer to construct the HTML via PHP
-    ob_start();
-    ?>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="row">
-            <div class="col">
-                <h1 class="text-center text-warning">Lantern Corps</h1>
-                <p class="text-center">Explore the details of the Corps, their colors, emotions, and more.</p>
-            </div>
-        </div>
-
-        <!-- Table Section -->
-        <div class="row mt-4">
+  <!-- Table Section -->
+  <div class="row">
+    <div class="col">
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+     <div class="row mt-4">
             <div class="col">
                 <div class="table-section bg-dark p-4 rounded">
                     <h2 class="text-warning">Corps Details</h2>
@@ -39,9 +30,13 @@ function renderCorpsView($corpsList)
                                     <th>Sector Number</th>
                                     <th>Sector Description</th>
                                 </tr>
-                            </thead>
+                                 </thead>
+<?php while ($corps = $corpsList->fetch_assoc()) {
+  ?>
+  <!-- Table Section -->
+       
+                           
                             <tbody>
-                                <?php foreach ($corpsArray as $corps): ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($corps['Corps_Name']); ?></td>
                                         <td><?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></td>
@@ -65,9 +60,7 @@ function renderCorpsView($corpsList)
             <div class="col">
                 <h2 class="text-warning">Oaths</h2>
                 <div class="oath-box bg-secondary p-4 rounded">
-                    <?php foreach ($corpsArray as $corps): ?>
                         <p><strong class="text-warning"><?php echo htmlspecialchars($corps['Corps_Name']); ?> Oath:</strong> <?php echo htmlspecialchars($corps['Corps_Oath']); ?></p>
-                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -77,3 +70,8 @@ function renderCorpsView($corpsList)
     echo ob_get_clean();
 }
 ?>
+     
+   
+   
+
+      
