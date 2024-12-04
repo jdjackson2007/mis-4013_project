@@ -14,14 +14,7 @@
             while ($corps = $corpsList->fetch_assoc()):
                 // Define URLs for background images
                 $backgroundUrls = [
-                    'Green Lantern Corps' => 'https://i.imgur.com/LnKVH.jpg',
-                    'Sinestro Corps' => 'https://i.imgur.com/tgHZG.jpg',
-                    'Blue Lantern Corps' => 'https://i.imgur.com/NKm98.jpg',
-                    'Red Lantern Corps' => 'https://i.imgur.com/WGdnL.jpg',
-                    'Indigo Tribe' => 'https://i.imgur.com/3Mvhy.jpg',
-                    'Star Sapphire Corps' => 'https://i.imgur.com/F5gKg.jpg',
-                    'Black Lantern Corps' => 'https://i.imgur.com/8thwT.jpg',
-                    'White Lantern Corps' => 'https://i.imgur.com/aV5mZ.jpg',
+                    
                 ];
 
                 // Get the background URL or a default image
