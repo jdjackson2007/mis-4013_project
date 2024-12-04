@@ -7,8 +7,8 @@ require_once 'util-db.php';
 function getCorpsData() {
     try {
         $conn = get_db_connection();
-        $query = "
-            SELECT 
+        $stmt = $conn->prepare
+            ("SELECT 
                 c.Corps_ID, c.Corps_Name, c.Corps_Description, c.Corps_Oath,
                 cc.CorpsColor_Name, ce.CorpsEmotion_Name, 
                 chq.CorpsHQ_Planet, chq.CorpsHQ_Sector,
@@ -18,15 +18,11 @@ function getCorpsData() {
             LEFT JOIN corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
             LEFT JOIN corpshq_table chq ON c.CorpsHQ_ID = chq.CorpsHQ_ID
             LEFT JOIN corpssectors_table cs ON chq.CorpsHQ_Sector = cs.CorpsSectors_SectorNumber
-        ";
-        $stmt = $conn->prepare($query);
+        ";)
         $stmt->execute();
         $result = $stmt->get_result();
         $conn->close();
         return $result;
     } catch (Exception $e) {
-        if (isset($conn)) $conn->close();
+        $conn->close();
         throw $e;
-    }
-}
-?>
