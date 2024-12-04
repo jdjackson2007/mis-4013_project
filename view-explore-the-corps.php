@@ -3,6 +3,12 @@
 
 function renderCorpsView($corpsList)
 {
+    // Convert result set to an array for reuse in multiple sections
+    $corpsArray = [];
+    while ($corps = $corpsList->fetch_assoc()) {
+        $corpsArray[] = $corps;
+    }
+
     // Start output buffer to construct the HTML via PHP
     ob_start();
     ?>
@@ -36,7 +42,7 @@ function renderCorpsView($corpsList)
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while ($corps = $corpsList->fetch_assoc()): ?>
+                                <?php foreach ($corpsArray as $corps): ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($corps['Corps_Name']); ?></td>
                                         <td><?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></td>
@@ -47,7 +53,7 @@ function renderCorpsView($corpsList)
                                         <td><?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></td>
                                         <td><?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></td>
                                     </tr>
-                                <?php endwhile; ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -60,9 +66,9 @@ function renderCorpsView($corpsList)
             <div class="col">
                 <h2 class="text-warning">Oaths</h2>
                 <div class="oath-box bg-secondary p-4 rounded">
-                    <?php while ($corps = $corpsList->fetch_assoc()): ?>
+                    <?php foreach ($corpsArray as $corps): ?>
                         <p><strong class="text-warning"><?php echo htmlspecialchars($corps['Corps_Name']); ?> Oath:</strong> <?php echo htmlspecialchars($corps['Corps_Oath']); ?></p>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
