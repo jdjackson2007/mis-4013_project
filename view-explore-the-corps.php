@@ -1,6 +1,4 @@
 <?php
-function renderCorpsView($corpsList) {
-    // Convert result set to an array for reuse
     $corpsArray = [];
     while ($corps = $corpsList->fetch_assoc()) {
         $corpsArray[] = $corps;
