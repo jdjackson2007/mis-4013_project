@@ -12,7 +12,6 @@ function renderCorpsView($corpsList)
     // Start output buffer to construct the HTML via PHP
     ob_start();
     ?>
-    <?php echo renderHeader("Explore the Corps"); // Dynamically include the header ?>
     <div class="container">
         <!-- Header Section -->
         <div class="row">
