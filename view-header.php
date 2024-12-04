@@ -25,17 +25,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open Pages Menu">
-                        Pages
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php" aria-label="Home">Home</a></li>
-                        <li><a class="dropdown-item" href="explorecorps.php" aria-label="Explore Lantern Corps">Explore Corps</a></li>
-                        <li><a class="dropdown-item" href="notable_lanterns.php" aria-label="Notable Lanterns">Notable Lanterns</a></li>
-                        <li><a class="dropdown-item" href="about.php" aria-label="About the Project">About</a></li>
-                    </ul>
-                </li>
+               <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Pages
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="index.php">Home</a></li>
+        <li><a class="dropdown-item" href="explorecorps.php">Explore Corps</a></li>
+        <li><a class="dropdown-item" href="notable_lanterns.php">Notable Lanterns</a></li>
+        <li><a class="dropdown-item" href="about.php">About</a></li>
+    </ul>
+</li>
             </ul>
         </div>
     </div>
