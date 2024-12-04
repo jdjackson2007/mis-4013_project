@@ -5,7 +5,7 @@ function get_db_connection() {
         "mis4013project.mysql.database.azure.com", 
         "jdjackson2007",                          
         "DougDoug07&&",                           
-        "mis-4013_Project"                        
+        "lantern_corps"                        
     );
 
     // Check connection
