@@ -1,5 +1,4 @@
-<?php
-if ($corpsList->num_rows > 0): ?>
+<?php if ($corpsList->num_rows > 0): ?>
     <div class="container">
         <!-- Title Section -->
         <div class="row">
@@ -31,12 +30,6 @@ if ($corpsList->num_rows > 0): ?>
                             <p><strong>HQ Sector:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></p>
                             <p><strong>Sector Number:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></p>
                             <p><strong>Sector Description:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></p>
-                            <hr>
-                            <h6>Oaths</h6>
-                            <p><strong>Main Oath:</strong> <?php echo htmlspecialchars($corps['Corps_Oath']); ?></p>
-                            <?php if (!empty($corps['Alternate_Oath'])): ?>
-                                <p><strong>Alternate Oath:</strong> <?php echo htmlspecialchars($corps['Alternate_Oath']); ?></p>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
