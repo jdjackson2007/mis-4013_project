@@ -1,10 +1,5 @@
 <?php
-    $corpsArray = [];
-    while ($corps = $corpsList->fetch_assoc()) {
-        $corpsArray[] = $corps;
-    }
-
-    ?>
+if ($corpsList->num_rows > 0): ?>
     <div class="container">
         <!-- Title Section -->
         <div class="row">
@@ -34,7 +29,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($corpsArray as $corps): ?>
+                                <?php while ($corps = $corpsList->fetch_assoc()): ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($corps['Corps_Name']); ?></td>
                                         <td><?php echo htmlspecialchars($corps['CorpsColor_Name']); ?></td>
@@ -45,7 +40,7 @@
                                         <td><?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></td>
                                         <td><?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
@@ -53,6 +48,10 @@
             </div>
         </div>
     </div>
-    <?php
-}
-?>
+<?php else: ?>
+    <div class="container">
+        <div class="alert alert-warning text-center mt-4">
+            <p>No data found in the database.</p>
+        </div>
+    </div>
+<?php endif; ?>
