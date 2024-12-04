@@ -18,7 +18,7 @@
         }
         body {
             background-image: url('https://i.pinimg.com/474x/59/81/2b/59812b7c40f6462e8ca670a96f2f4ffe--white-lantern-corps-green-lantern-oath.jpg');
-            background-size: cover;
+            background-size: 100% 100%; /* Ensures it fits the screen */
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #fff;
