@@ -51,9 +51,9 @@
             <h3>Welcome to the Lantern Corps Universe!</h3>
             <p>Dive into the rich history of the Lantern Corps, explore notable Lanterns, and find your favorite comics.</p>
             <div class="button-group">
-                <a href="explore_corps.php" class="btn btn-primary">Explore the Corps</a>
-                <a href="lanterns.php" class="btn btn-success">The Lanterns</a>
-                <a href="finding_the_comics.php" class="btn btn-warning">Finding the Comics</a>
+                <a href="explore-the-corps.php" class="btn btn-primary">Explore the Corps</a>
+                <a href="explore-the-lanterns.php" class="btn btn-success">The Lanterns</a>
+                <a href="finding-the-comics.php" class="btn btn-warning">Finding the Comics</a>
             </div>
         </div>
     </main>
