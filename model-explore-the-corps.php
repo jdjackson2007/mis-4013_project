@@ -1,7 +1,7 @@
 <?php
 // model-explore-the-corps.php
 
-require_once 'util-db.php'; // Ensure util-db.php is included for the database connection
+Require_Once ("util-db.php"); // Ensure util-db.php is included for the database connection
 
 // Function to fetch Corps data with all required joins
 function getCorpsData() {
