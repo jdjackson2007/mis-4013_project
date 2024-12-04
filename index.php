@@ -47,9 +47,10 @@
             <a href="finding_the_comics.php" class="btn btn-warning">Finding the Comics</a>
         </div>
     </div>
-    <?php include 'view-footer.php'; ?>
+   
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+ <?php include 'view-footer.php'; ?>
