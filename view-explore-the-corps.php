@@ -72,7 +72,6 @@ function renderCorpsView($corpsList)
             </div>
         </div>
     </div>
-    <?php echo renderFooter(); // Dynamically include the footer ?>
     <?php
     // Output the buffered content
     echo ob_get_clean();
