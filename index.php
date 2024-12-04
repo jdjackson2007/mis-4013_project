@@ -10,15 +10,22 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
         body {
-            background-image: url('https://i.ytimg.com/vi/37yerRNDcWg/maxresdefault.jpg');
+            background-image: url('https://i.pinimg.com/474x/59/81/2b/59812b7c40f6462e8ca670a96f2f4ffe--white-lantern-corps-green-lantern-oath.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #fff;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        }
+        main {
+            flex: 1; /* Ensures main content takes up remaining space */
         }
         .container {
             margin-top: 20px;
@@ -30,27 +37,29 @@
             margin: 10px;
         }
         footer {
-            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
+            padding: 10px;
             color: #fff;
         }
     </style>
 </head>
 <body>
     <?php include 'view-header.php'; ?>
-    <div class="container text-center">
-        <h3>Welcome to the Lantern Corps Universe!</h3>
-        <p>Dive into the rich history of the Lantern Corps, explore notable Lanterns, and find your favorite comics.</p>
-        <div class="button-group">
-            <a href="explore_corps.php" class="btn btn-primary">Explore the Corps</a>
-            <a href="lanterns.php" class="btn btn-success">The Lanterns</a>
-            <a href="finding_the_comics.php" class="btn btn-warning">Finding the Comics</a>
+    <main>
+        <div class="container text-center">
+            <h3>Welcome to the Lantern Corps Universe!</h3>
+            <p>Dive into the rich history of the Lantern Corps, explore notable Lanterns, and find your favorite comics.</p>
+            <div class="button-group">
+                <a href="explore_corps.php" class="btn btn-primary">Explore the Corps</a>
+                <a href="lanterns.php" class="btn btn-success">The Lanterns</a>
+                <a href="finding_the_comics.php" class="btn btn-warning">Finding the Comics</a>
+            </div>
         </div>
-    </div>
-   
+    </main>
+    <?php include 'view-footer.php'; ?>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
- <?php include 'view-footer.php'; ?>
