@@ -19,7 +19,6 @@
               <th>Emotion</th>
               <th>HQ Planet</th>
               <th>HQ Sector</th>
-              <th>Sector Number</th>
               <th>Sector Description</th>
               <th>Oath</th>
               <th>Description</th>
@@ -27,7 +26,7 @@
           </thead>
           <tbody>
             <?php while ($corps = $corpsList->fetch_assoc()) { 
-              // Override Sector Description and HQ Planet for specific Corps
+              // Override HQ Planet and Sector Description for specific Corps
               $hqPlanet = $corps['CorpsHQ_Planet'];
               $sectorDescription = $corps['CorpsSectors_Description'];
               if ($corps['Corps_Name'] === 'Sinestro Lantern Corps') {
@@ -45,7 +44,6 @@
               <td><?php echo $corps['CorpsEmotion_Name']; ?></td>
               <td><?php echo $hqPlanet; ?></td>
               <td><?php echo $corps['CorpsHQ_Sector']; ?></td>
-              <td><?php echo $corps['CorpsSectors_SectorNumber']; ?></td>
               <td><?php echo $sectorDescription; ?></td>
               <td><?php echo nl2br(htmlspecialchars($corps['Corps_Oath'])); ?></td>
               <td><?php echo $corps['Corps_Description']; ?></td>
