@@ -35,8 +35,9 @@
                     'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
                 ];
 
-                // Get the background URL or a default image
-                $backgroundUrl = $backgroundUrls[$corps['Corps_Name']] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
+                // Normalize key lookup and apply fallback
+                $backgroundKey = trim($corps['Corps_Name']);
+                $backgroundUrl = $backgroundUrls[$backgroundKey] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
             ?>
                 <div class="col-md-6 mb-4">
                     <div class="card bg-dark text-light" style="background-image: url('<?php echo htmlspecialchars($backgroundUrl); ?>'); background-size: cover; background-position: center; color: white; border-radius: 10px; overflow: hidden;">
