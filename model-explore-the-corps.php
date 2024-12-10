@@ -27,18 +27,13 @@ function getCorpsData() {
                     ELSE chq.CorpsHQ_Planet
                 END AS CorpsHQ_Planet,
                 chq.CorpsHQ_Sector,
-                cs.CorpsSectors_SectorNumber, 
-                -- Use CASE statement to override the Sector Description for specific Corps
-                CASE 
-                    WHEN c.Corps_Name = 'Sinestro Lantern Corps' THEN 'Qward'
-                    WHEN c.Corps_Name = 'Indigo Tribe' THEN 'Nok'
-                    ELSE cs.CorpsSectors_Description
-                END AS CorpsSectors_Description
+                -- Directly fetch CorpsSectors_Description from the new table structure
+                cs.CorpsSectors_Description
             FROM corps_table c
             LEFT JOIN corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
             LEFT JOIN corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
             LEFT JOIN corpshq_table chq ON c.CorpsHQ_ID = chq.CorpsHQ_ID
-            LEFT JOIN corpssectors_table cs ON chq.CorpsHQ_Sector = cs.CorpsSectors_SectorNumber
+            LEFT JOIN corpssectors_table cs ON chq.CorpsHQ_ID = cs.CorpsHQ_ID
         ";
 
         // Prepare and execute the query
