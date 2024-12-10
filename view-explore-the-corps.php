@@ -3,8 +3,10 @@
         <!-- Title Section -->
         <div class="row">
             <div class="col">
-                <h1 class="text-center text-warning">Lantern Corps</h1>
-                <p class="text-center">Explore the details of the Corps, their colors, emotions, and more.</p>
+                <header class="bg-dark py-5 text-center text-white">
+                    <h1 class="display-4 text-warning">Lantern Corps</h1>
+                    <p class="lead">Explore the details of the Corps, their colors, emotions, and oaths.</p>
+                </header>
             </div>
         </div>
 
@@ -14,7 +16,7 @@
             while ($corps = $corpsList->fetch_assoc()):
                 // Define URLs for background images
                 $backgroundUrls = [
-                    
+                    // Add background URLs for each Corps here
                 ];
 
                 // Get the background URL or a default image
@@ -31,6 +33,11 @@
                             <p><strong>HQ Sector:</strong> <?php echo htmlspecialchars($corps['CorpsHQ_Sector']); ?></p>
                             <p><strong>Sector Number:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_SectorNumber']); ?></p>
                             <p><strong>Sector Description:</strong> <?php echo htmlspecialchars($corps['CorpsSectors_Description']); ?></p>
+                            <hr>
+                            <p><strong>Oath:</strong></p>
+                            <blockquote class="blockquote text-warning">
+                                <p><?php echo nl2br(htmlspecialchars($corps['Corps_Oath'])); ?></p>
+                            </blockquote>
                         </div>
                     </div>
                 </div>
