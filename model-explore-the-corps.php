@@ -27,8 +27,12 @@ function getCorpsData() {
                     ELSE chq.CorpsHQ_Planet
                 END AS CorpsHQ_Planet,
                 chq.CorpsHQ_Sector,
-                -- Directly fetch CorpsSectors_Description from the new table structure
-                cs.CorpsSectors_Description
+                -- Fetch CorpsSectors_Description from corpssectors_table
+                CASE 
+                    WHEN c.Corps_Name = 'Sinestro Lantern Corps' THEN 'Qward'
+                    WHEN c.Corps_Name = 'Indigo Tribe' THEN 'Nok'
+                    ELSE cs.CorpsSectors_Description
+                END AS CorpsSectors_Description
             FROM corps_table c
             LEFT JOIN corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
             LEFT JOIN corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
