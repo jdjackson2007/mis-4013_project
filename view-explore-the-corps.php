@@ -44,7 +44,7 @@
                         <?php while ($corps = $corpsList->fetch_assoc()) { 
                             // Override HQ Planet and Sector Description for specific Corps
                             $hqPlanet = $corps['CorpsHQ_Planet'];
-                            $sectorDescription = $corps['CorpsSectors_Description'];
+                            $sectorDescription = $corps['CorpsHQSector_Description'];
                             if ($corps['Corps_Name'] === 'Sinestro Lantern Corps') {
                                 $hqPlanet = 'Qward';
                                 $sectorDescription = 'Qward';
