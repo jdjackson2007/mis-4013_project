@@ -20,7 +20,12 @@ function getCorpsData() {
                 c.Corps_Oath,
                 cc.CorpsColor_Name, 
                 ce.CorpsEmotion_Name, 
-                chq.CorpsHQ_Planet, 
+                -- Use CASE statement to override the HQ Planet for specific Corps
+                CASE 
+                    WHEN c.Corps_Name = 'Sinestro Lantern Corps' THEN 'Qward'
+                    WHEN c.Corps_Name = 'Indigo Tribe' THEN 'Nok'
+                    ELSE chq.CorpsHQ_Planet
+                END AS CorpsHQ_Planet,
                 chq.CorpsHQ_Sector,
                 cs.CorpsSectors_SectorNumber, 
                 cs.CorpsSectors_Description
