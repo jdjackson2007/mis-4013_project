@@ -55,7 +55,7 @@
             // Set background images based on Corps Name
             $backgrounds = [
                 'Green Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dfqj-d92d9f74-331a-4a8a-b286-df8b3748e7f4.jpg',
-                'Sinestro Lantern Corps' => 'https://assets.mycast.io/actor_images/actor-yellow-lantern-495463_large.jpg?1658943985',
+                'Sinestro Lantern Corps' => 'https://i.ytimg.com/vi/87YQOtpqhz0/maxresdefault_live.jpg',
                 'Red Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dc5w-90f39292-92d8-4486-a909-27b6d5479d6c.jpg',
                 'Blue Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2012/09/05/447873_blue-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
                 'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
