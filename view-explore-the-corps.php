@@ -2,7 +2,7 @@
   <!-- Title Section -->
   <div class="row">
     <div class="col">
-      <h1 class="text-center">Explore the Lantern Corps</h1> <!-- Center the title -->
+      <h1 class="text-center">Explore the Lantern Corps</h1>
     </div>
   </div>
 
@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col">
       <div class="table-responsive">
-        <table class="table table-striped table-bordered"> <!-- Add Bootstrap styling for a striped and bordered table -->
+        <table class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>ID</th>
