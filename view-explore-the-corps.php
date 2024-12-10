@@ -31,7 +31,7 @@
                     'Black Lantern Corps' => 'https://www.desktopbackground.org/p/2014/09/10/822692_black-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
                     'White Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dctl-a77e4109-3a8c-4102-b5a1-cc03b7c8ab8c.jpg/v1/fill/w_1125,h_710,q_70,strp/white_lantern_corps_wallpapers_by_laffler_da6dctl-pre.jpg',
                     'Star Sapphire Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/66a83b6c-e211-4afb-b88a-5f4700f49d57/d7bommh-a7327852-5959-47a1-9ffd-e0cf5f3e0fdd.jpg/v1/fill/w_1024,h_647,q_75,strp/star_sapphire_corps_wallpaper_by_laffler_d7bommh-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQ3IiwicGF0aCI6IlwvZlwvNjZhODNiNmMtZTIxMS00YWZiLWI4OGEtNWY0NzAwZjQ5ZDU3XC9kN2JvbW1oLWE3MzI3ODUyLTU5NTktNDdhMS05ZmZkLWUwY2Y1ZjNlMGZkZC5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.cC3nkhX_MXkzYa2m_3EEglQsxeNZ3gQSNZHJhNYdriA',
-                    'Sinestro Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6deur-997df727-4538-4375-82ba-a743017873fa.jpg',
+                    'Sinestro Lantern Corps' => 'https://assets.mycast.io/actor_images/actor-yellow-lantern-495463_large.jpg?1658943985',
                     'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
                 ];
 
