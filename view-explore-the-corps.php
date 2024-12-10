@@ -1,12 +1,6 @@
 <?php if ($corpsList->num_rows > 0): ?>
     <div class="container">
         <!-- Title Section -->
-        <header class="bg-dark text-center text-white py-5" style="background-image: url('https://via.placeholder.com/1920x400.png?text=Lantern+Corps'); background-size: cover; background-position: center;">
-            <div class="container">
-                <h1 class="display-4 text-warning">Lantern Corps</h1>
-                <p class="lead">Explore the details of the Corps, their colors, emotions, and oaths.</p>
-            </div>
-        </header>
 
         <!-- Corps Section -->
         <div class="row mt-4">
