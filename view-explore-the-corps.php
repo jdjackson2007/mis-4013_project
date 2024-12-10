@@ -19,17 +19,18 @@
             height: auto;
         }
         .lantern-card {
-            background-size: cover;
-            background-position: center;
+            border: none;
             border-radius: 15px;
-            padding: 20px;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
         }
-        .table-responsive {
+        .lantern-card .card-body {
             background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 15px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        .lantern-card img {
+            height: 200px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -40,12 +41,4 @@
     <div class="row mb-4">
         <div class="col text-center">
             <h1 class="display-4 text-warning">
-                <img src="https://th.bing.com/th/id/R.1c38180d23e00ef0098ee4c73e5db26f?rik=8FS2UBhhPyEBaA&riu=http%3a%2f%2fwww.writeups.org%2fwp-content%2fuploads%2fGreen-Lantern-Hal-Jordan-DC-Comics-h3.jpg&ehk=nADg%2bltkYCzhaxR9YQCOQVrWiR%2fhht%2bW1xrxDp0%2fdOE%3d&risl=&pid=ImgRaw&r=0"
-                     alt="Green Lantern Ring" class="header-image">
-                Explore the Lantern Corps
-            </h1>
-            <p class="lead">Discover the power, colors, and oaths of each Corps.</p>
-        </div>
-    </div>
-
-    <!-- Corps
+                <img src="https://th.bing.com/th/id/R.1c38180d23e00ef0098ee4c73e5db26f?rik=8FS2UBhhPyEBaA&riu=http%3a%2f%2fwww.writeups.org%2fwp-content%2fuploads%2fGreen-Lantern-Hal-Jordan-DC-Comics-h3.jpg&ehk=nADg%2bltkYCzhaxR9YQCOQVrWiR%2fhht%2bW1xrxDp0%2
