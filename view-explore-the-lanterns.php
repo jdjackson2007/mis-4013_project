@@ -1,12 +1,3 @@
-<?php
-require_once 'model-explore-the-lanterns.php';
-
-try {
-    $lanternsList = getLanternsData(); // Fetch Lantern data
-} catch (Exception $e) {
-    die("Error loading Lantern data: " . $e->getMessage());
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
