@@ -52,10 +52,11 @@ try {
                 <div class="card-body">
                     <h3 class="card-title text-warning"><?php echo htmlspecialchars($lantern['name']); ?></h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
-                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps'] ?: 'Unknown Corps'); ?></p>
+                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps_name'] ?: 'Unknown Corps'); ?></p>
                     <p><strong>Earth Version:</strong> <?php echo htmlspecialchars($lantern['earth_version'] ?: 'None'); ?></p>
                     <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance'] ?: 'Unknown'); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status'] ?: 'Active'); ?></p>
+                    <p><strong>Classes:</strong> <?php echo htmlspecialchars($lantern['classes'] ?: 'None'); ?></p>
                     <p><strong>Bio:</strong> <?php echo htmlspecialchars($lantern['bio'] ?: 'No bio available'); ?></p>
                 </div>
             </div>
