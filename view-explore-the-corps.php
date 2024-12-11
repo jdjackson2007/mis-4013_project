@@ -1,3 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore the Lantern Corps</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp7379073.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+        }
+        .header-image {
+            width: 50px;
+            height: auto;
+        }
+        .lantern-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .lantern-card .card-body {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        .lantern-card img {
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+
+
 <div class="container my-5">
     <!-- Main Content -->
     <div class="row mb-4">
@@ -47,3 +89,11 @@
         <?php } ?>
     </div>
 </div>
+
+<footer class="text-center mt-5">
+    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Database</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
