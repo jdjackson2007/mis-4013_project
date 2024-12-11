@@ -87,4 +87,37 @@ try {
                     </h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
                     <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps_name'] ?: 'Unknown Corps'); ?></p>
-                    <p><strong>Earth Version:</strong> <?php echo ht
+                    <p><strong>Earth Version:</strong> <?php echo htmlspecialchars($lantern['earth_version'] ?: 'None'); ?></p>
+                    <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance'] ?: 'Unknown'); ?></p>
+                    <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status'] ?: 'Active'); ?></p>
+                    <p><strong>Classes:</strong> <?php echo htmlspecialchars($lantern['classes'] ?: 'None'); ?></p>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="fas fa-ring text-warning"></i> Willpower.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Font Awesome JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+<!-- Tippy.js for Tooltips -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+    // Initialize Tippy.js tooltips
+    document.addEventListener('DOMContentLoaded', () => {
+        tippy('[data-tippy-content]', {
+            animation: 'scale',
+            theme: 'light',
+        });
+    });
+</script>
+</body>
+</html>
