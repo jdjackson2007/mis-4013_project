@@ -24,15 +24,42 @@
                         <?php 
                         $corps = explode(',', $lantern['corps']); // Split corps by commas
                         foreach ($corps as $corp) { ?>
-                            <li><?php echo htmlspecialchars($corp); ?></li>
+                            <li><?php echo htmlspecialchars(trim($corp)); ?></li>
                         <?php } ?>
                     </ul>
-                    
-                    <p><strong>Colors:</strong> <?php echo htmlspecialchars($lantern['colors']); ?></p>
-                    <p><strong>Emotions:</strong> <?php echo htmlspecialchars($lantern['emotions']); ?></p>
+
+                    <!-- Colors -->
+                    <p><strong>Colors:</strong></p>
+                    <ul>
+                        <?php 
+                        $colors = explode(',', $lantern['colors']); // Split colors by commas
+                        foreach ($colors as $color) { ?>
+                            <li><?php echo htmlspecialchars(trim($color)); ?></li>
+                        <?php } ?>
+                    </ul>
+
+                    <!-- Emotions -->
+                    <p><strong>Emotions:</strong></p>
+                    <ul>
+                        <?php 
+                        $emotions = explode(',', $lantern['emotions']); // Split emotions by commas
+                        foreach ($emotions as $emotion) { ?>
+                            <li><?php echo htmlspecialchars(trim($emotion)); ?></li>
+                        <?php } ?>
+                    </ul>
+
                     <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance']); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status']); ?></p>
-                    <p><strong>Class:</strong> <?php echo htmlspecialchars($lantern['classes'] ?: 'N/A'); ?></p>
+                    
+                    <!-- Classes -->
+                    <p><strong>Class:</strong></p>
+                    <ul>
+                        <?php 
+                        $classes = explode(',', $lantern['classes']); // Split classes by commas
+                        foreach ($classes as $class) { ?>
+                            <li><?php echo htmlspecialchars(trim($class)); ?></li>
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
         </div>
