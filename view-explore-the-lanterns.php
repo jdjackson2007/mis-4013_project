@@ -1,13 +1,3 @@
-<?php
-require_once 'model-explore-the-lanterns.php'; // Include the model
-
-try {
-    $lanternsList = getLanternsData(); // Fetch Lantern data
-} catch (Exception $e) {
-    die($e->getMessage());
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,40 +9,29 @@ try {
     <!-- Custom CSS -->
     <style>
         body {
-            background-image: url('https://wallpapercave.com/wp/wp7379073.jpg');
-            background-size: cover;
-            background-attachment: fixed;
+            background-color: #111;
             color: #fff;
         }
-        .lantern-card {
+        .card {
+            background-color: #222;
+            color: #fff;
             border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
-        .lantern-card:hover {
-            transform: translateY(-10px);
-        }
-        .lantern-card .card-body {
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-        .text-glow {
-            text-shadow: 0 0 5px #fff, 0 0 10px #ffd700, 0 0 15px #ffd700;
+        .card:hover {
+            transform: scale(1.05);
         }
         .navbar {
-            background: rgba(0, 0, 0, 0.9);
-        }
-        .scrollable-section {
-            max-height: 80vh;
-            overflow-y: auto;
+            background-color: #000;
         }
         footer {
-            background: rgba(0, 0, 0, 0.9);
+            background-color: #000;
             color: #fff;
-            padding: 20px 0;
+            padding: 15px 0;
+        }
+        .text-highlight {
+            color: #ffd700;
         }
     </style>
     <!-- Font Awesome -->
@@ -63,70 +42,58 @@ try {
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-glow" href="#"><i class="fas fa-ring"></i> Lantern Corps Universe</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand text-highlight" href="#"><i class="fas fa-ring"></i> Lantern Corps Universe</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="explore-the-corps.php"><i class="fas fa-lightbulb"></i> Explore the Corps</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-user-circle"></i> Explore the Lanterns</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-book"></i> Finding the Comics</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="explore-the-corps.php"><i class="fas fa-lightbulb"></i> Explore the Corps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"><i class="fas fa-user-circle"></i> Explore the Lanterns</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-book"></i> Finding the Comics</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container my-5">
-    <!-- Title Section -->
     <div class="row mb-4">
         <div class="col text-center">
-            <h1 class="display-4 text-warning text-glow">Explore the Lanterns</h1>
-            <p class="lead">Meet the heroes and villains of the Lantern Corps universe.</p>
+            <h1 class="display-4 text-highlight">Explore the Lanterns</h1>
+            <p class="lead">Discover the characters of the Lantern Corps and their stories.</p>
         </div>
     </div>
 
-    <!-- Lanterns Section -->
-    <div class="row scrollable-section">
+    <div class="row">
         <?php while ($lantern = $lanternsList->fetch_assoc()) { ?>
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card lantern-card">
-                <div class="card-body">
-                    <h3 class="card-title text-warning"><?php echo htmlspecialchars($lantern['Lantern_Name']); ?></h3>
-                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['Lantern_Corps']); ?></p>
-                    <p><strong>Color:</strong> <?php echo htmlspecialchars($lantern['Lantern_Color']); ?></p>
-                    <p><strong>Sector:</strong> <?php echo htmlspecialchars($lantern['Lantern_Sector']); ?></p>
-                    <p><strong>Description:</strong> <?php echo htmlspecialchars($lantern['Lantern_Description']); ?></p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-highlight"><?php echo htmlspecialchars($lantern['Lantern_Name']); ?></h5>
+                        <p class="card-text"><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['Lantern_Corps']); ?></p>
+                        <p class="card-text"><strong>Color:</strong> <?php echo htmlspecialchars($lantern['Lantern_Color']); ?></p>
+                        <p class="card-text"><strong>Sector:</strong> <?php echo htmlspecialchars($lantern['Lantern_Sector']); ?></p>
+                        <p class="card-text"><strong>Description:</strong> <?php echo htmlspecialchars($lantern['Lantern_Description']); ?></p>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php } ?>
     </div>
 </div>
 
 <footer class="text-center">
     <div class="container">
-        <p>&copy; <?php echo date('Y'); ?> Lantern Corps Database</p>
-        <p>Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="fas fa-ring text-warning"></i> Willpower</p>
-        <div id="ring-animation" style="width: 100px; margin: 0 auto;"></div>
+        <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. All rights reserved.</p>
     </div>
 </footer>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Font Awesome JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-<!-- Lottie Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-<!-- Lottie Animation Script -->
-<script>
-    lottie.loadAnimation({
-        container: document.getElementById('ring-animation'),
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: 'https://assets2.lottiefiles.com/packages/lf20_b6l7ahcz.json'
-    });
-</script>
 </body>
 </html>
