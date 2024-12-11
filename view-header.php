@@ -14,9 +14,9 @@
                         Menu
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="explore_corps.php">Explore the Corps</a></li>
-                        <li><a class="dropdown-item" href="lanterns.php">The Lanterns</a></li>
-                        <li><a class="dropdown-item" href="finding_the_comics.php">Finding the Comics</a></li>
+                        <li><a class="dropdown-item" href="explore-the-corps.php">Explore the Corps</a></li>
+                        <li><a class="dropdown-item" href="explore-the-lanterns.php">The Lanterns</a></li>
+                        <li><a class="dropdown-item" href="finding-the-comics.php">Finding the Comics</a></li>
                     </ul>
                 </li>
             </ul>
