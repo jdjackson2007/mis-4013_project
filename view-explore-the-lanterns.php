@@ -48,15 +48,13 @@ try {
         }
         .lantern-card .card-title {
             font-size: 1.5rem;
+            color: #000; /* Changed font color to black for the title */
         }
         .text-warning {
             font-weight: bold;
         }
-        .tooltip-style {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-size: 0.9rem;
-            border-radius: 4px;
+        .lead {
+            color: orange; /* Changed subtitle color to orange */
         }
         footer {
             background-color: #1f1f1f;
@@ -79,7 +77,9 @@ try {
     <div class="row mb-4">
         <div class="col text-center">
             <h1 class="display-4 text-warning">
-                <i class="fas fa-ring"></i> Explore the Lanterns
+                <img src="https://www.nealadamsstore.com/assets/images/unnamed-1.jpg" 
+                     alt="Green Lantern Ring" style="height: 50px; margin-right: 10px;"> 
+                Explore the Lanterns
             </h1>
             <p class="lead">Meet the legendary Lanterns from across the universe.</p>
         </div>
@@ -95,14 +95,17 @@ try {
             'Red Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dc5w-90f39292-92d8-4486-a909-27b6d5479d6c.jpg',
             'Blue Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2012/09/05/447873_blue-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
-            'Star Sapphire Corps' => 'https://th.bing.com/th/id/R.ed0c35e97502f16d3e34fb0b968947a4?rik=wXhkHWXxDJElyA&riu=http%3a%2f%2fpre01.deviantart.net%2fa8cb%2fth%2fpre%2ff%2f2016%2f166%2f0%2f8%2fstar_sapphires_wallpapers_by_laffler-da6dawc.jpg&ehk=f6AO0cCtvLJroi%2b9Ueam%2fLiutJhY8lF7F0EZF%2bu1cSc%3d&risl=&pid=ImgRaw&r=0',
+            'Star Sapphire Corps' => 'https://th.bing.com/th/id/R.ed0c35e97502f16d3e34fb0b968947a4?rik=wXhkHWXxDJElyA&riu=http%3a%2f%2fpre01.deviantart.net%2fa8cb%2fth%2fpre%2ff%2f2016%2f166%2f0%2f8%2fstar_sapphires_wallpapers_by_laffler-da6dawc.jpg',
             'Orange Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2015/12/15/1057780_orange-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'Black Lantern Corps' => 'https://www.desktopbackground.org/p/2014/09/10/822692_black-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'White Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dctl-a77e4109-3a8c-4102-b5a1-cc03b7c8ab8c.jpg',
         ];
 
         while ($lantern = $lanternsList->fetch_assoc()) { 
-            $backgroundImage = $backgrounds[$lantern['corps_name']] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
+            // Use the first corps for the image
+            $corpsList = explode(',', $lantern['corps_name']);
+            $primaryCorps = trim($corpsList[0]);
+            $backgroundImage = $backgrounds[$primaryCorps] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
         ?>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card lantern-card h-100">
