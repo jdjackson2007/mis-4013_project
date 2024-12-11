@@ -18,47 +18,56 @@
                     </h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
                     
-                    <!-- Display Multiple Corps -->
-                    <p><strong>Corps:</strong></p>
+                    <!-- Display Corps Membership -->
+                    <p><strong>Primary Corps:</strong></p>
                     <ul>
-                        <?php 
+                        <?php
                         $corps = explode(',', $lantern['corps']); // Split corps by commas
-                        foreach ($corps as $corp) { ?>
-                            <li><?php echo htmlspecialchars(trim($corp)); ?></li>
-                        <?php } ?>
+                        foreach ($corps as $index => $corp) {
+                            if ($index === 0) {
+                                // Highlight the first Corps
+                                echo '<li><strong>' . htmlspecialchars(trim($corp)) . ' (Primary)</strong></li>';
+                            } else {
+                                echo '<li>' . htmlspecialchars(trim($corp)) . '</li>';
+                            }
+                        }
+                        ?>
                     </ul>
-
+                    
                     <!-- Colors -->
-                    <p><strong>Colors:</strong></p>
+                    <p><strong>Associated Colors:</strong></p>
                     <ul>
-                        <?php 
-                        $colors = explode(',', $lantern['colors']); // Split colors by commas
-                        foreach ($colors as $color) { ?>
-                            <li><?php echo htmlspecialchars(trim($color)); ?></li>
-                        <?php } ?>
+                        <?php
+                        $colors = explode(',', $lantern['colors']);
+                        foreach ($colors as $color) {
+                            echo '<li>' . htmlspecialchars(trim($color)) . '</li>';
+                        }
+                        ?>
                     </ul>
-
+                    
                     <!-- Emotions -->
-                    <p><strong>Emotions:</strong></p>
+                    <p><strong>Associated Emotions:</strong></p>
                     <ul>
-                        <?php 
-                        $emotions = explode(',', $lantern['emotions']); // Split emotions by commas
-                        foreach ($emotions as $emotion) { ?>
-                            <li><?php echo htmlspecialchars(trim($emotion)); ?></li>
-                        <?php } ?>
+                        <?php
+                        $emotions = explode(',', $lantern['emotions']);
+                        foreach ($emotions as $emotion) {
+                            echo '<li>' . htmlspecialchars(trim($emotion)) . '</li>';
+                        }
+                        ?>
                     </ul>
-
-                    <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance']); ?></p>
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status']); ?></p>
+                    
+                    <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance'] ?: 'Unknown'); ?></p>
+                    <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status'] ?: 'Active'); ?></p>
                     
                     <!-- Classes -->
-                    <p><strong>Class:</strong></p>
+                    <p><strong>Special Classes:</strong></p>
                     <ul>
-                        <?php 
-                        $classes = explode(',', $lantern['classes']); // Split classes by commas
-                        foreach ($classes as $class) { ?>
-                            <li><?php echo htmlspecialchars(trim($class)); ?></li>
-                        <?php } ?>
+                        <?php
+                        $classes = explode(',', $lantern['classes']);
+                        foreach ($classes as $class) {
+                            echo '<li>' . htmlspecialchars(trim($class)) . '</li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
