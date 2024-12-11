@@ -2,9 +2,10 @@
 require_once 'model-finding-the-comics.php';
 
 try {
-    $comicSources = getComicSources(); // Fetch comic sources
+    $comicSources = getComicSources();
+    $topLanternComics = getTopLanternComics();
 } catch (Exception $e) {
-    die("Error loading comic sources: " . $e->getMessage());
+    die("Error loading data: " . $e->getMessage());
 }
 ?>
 
@@ -26,21 +27,15 @@ try {
             color: #fff;
             font-family: 'Arial', sans-serif;
         }
-        .comic-card {
+        .comic-card, .top-comic-card {
             background-color: #1f1f1f;
             border: 1px solid #333;
             border-radius: 8px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .comic-card:hover {
+        .comic-card:hover, .top-comic-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-        .comic-card .card-body {
-            color: #fff;
-        }
-        .comic-card .card-title {
-            font-size: 1.5rem;
         }
         .btn-custom {
             background-color: #ffd700;
@@ -49,6 +44,10 @@ try {
         .btn-custom:hover {
             background-color: #ffa500;
             color: #fff;
+        }
+        .rating {
+            color: #ffd700;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -60,8 +59,28 @@ try {
             <h1 class="display-4 text-warning animate__animated animate__bounceInDown">
                 <i class="fas fa-book"></i> Finding the Comics
             </h1>
-            <p class="lead text-muted">Explore the best sources for comics, collectibles, and memorabilia.</p>
+            <p class="lead text-muted">Explore the best sources for comics, ratings, and collectibles.</p>
         </div>
+    </div>
+
+    <!-- Top Lantern Comics Section -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h2 class="text-warning">Top Lantern Comics Today</h2>
+        </div>
+        <?php foreach ($topLanternComics as $comic) { ?>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card top-comic-card h-100">
+                <div class="card-body">
+                    <h3 class="card-title text-warning"><?php echo htmlspecialchars($comic['title']); ?></h3>
+                    <p><?php echo htmlspecialchars($comic['description']); ?></p>
+                    <p><strong>Seller:</strong> <?php echo htmlspecialchars($comic['seller']); ?></p>
+                    <p><strong>Price:</strong> <?php echo htmlspecialchars($comic['price']); ?></p>
+                    <p class="rating"><strong>Rating:</strong> <?php echo htmlspecialchars($comic['rating']); ?></p>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
     </div>
 
     <!-- Comic Sources Section -->
@@ -72,6 +91,9 @@ try {
                 <div class="card-body">
                     <h3 class="card-title text-warning"><?php echo htmlspecialchars($source['name']); ?></h3>
                     <p class="card-text"><?php echo htmlspecialchars($source['description']); ?></p>
+                    <?php if ($source['rating_support']) { ?>
+                        <p class="rating">⭐ Supports Ratings</p>
+                    <?php } ?>
                     <a href="<?php echo htmlspecialchars($source['url']); ?>" target="_blank" class="btn btn-custom">
                         Visit <i class="fas fa-external-link-alt"></i>
                     </a>
