@@ -11,7 +11,7 @@ function getLanternsData() {
     try {
         $conn = get_db_connection(); // Get the database connection
 
-        // Corrected SQL query
+        // Simple SQL query
         $query = "
             SELECT 
                 nl.NotableLanterns_Name AS name,
@@ -22,10 +22,10 @@ function getLanternsData() {
                 nl.NotableLanterns_Status AS status,
                 nl.NotableLanterns_MultipleCorps AS multiple_corps,
                 c.Corps_Name AS corps,
-                cc.CorpsColor_Name  AS colors,
-                ce.CorpsEmotion_Name  AS emotions,
-                ch.CorpsHQ_Planet  AS planets,
-                ch.CorpsHQ_Sector  AS sectors,
+                cc.CorpsColor_Name AS colors,
+                ce.CorpsEmotion_Name AS emotions,
+                ch.CorpsHQ_Planet AS planets,
+                ch.CorpsHQ_Sector AS sectors,
                 lsc.LanternsSpecialClasses_ClassName AS classes
             FROM 
                 notablelanterns_table nl
@@ -44,10 +44,10 @@ function getLanternsData() {
             GROUP BY 
                 nl.NotableLanterns_Name, nl.NotableLanterns_MultipleCorps
             ORDER BY 
-                nl.NotableLanterns_Name;
+                nl.NotableLanterns_MultipleCorps, nl.NotableLanterns_Name;
         ";
 
-        // Prepare and execute the query
+        // Execute the query
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             throw new Exception("Failed to prepare SQL statement: " . $conn->error);
@@ -75,3 +75,4 @@ function getLanternsData() {
         throw new Exception("Error fetching Lantern data: " . $e->getMessage());
     }
 }
+?>
