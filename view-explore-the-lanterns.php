@@ -17,7 +17,17 @@
                         <?php echo htmlspecialchars($lantern['name']); ?>
                     </h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
-                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps']); ?></p>
+                    
+                    <!-- Display Multiple Corps -->
+                    <p><strong>Corps:</strong></p>
+                    <ul>
+                        <?php 
+                        $corps = explode(',', $lantern['corps']); // Split corps by commas
+                        foreach ($corps as $corp) { ?>
+                            <li><?php echo htmlspecialchars($corp); ?></li>
+                        <?php } ?>
+                    </ul>
+                    
                     <p><strong>Colors:</strong> <?php echo htmlspecialchars($lantern['colors']); ?></p>
                     <p><strong>Emotions:</strong> <?php echo htmlspecialchars($lantern['emotions']); ?></p>
                     <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance']); ?></p>
@@ -42,4 +52,3 @@
         });
     });
 </script>
-
