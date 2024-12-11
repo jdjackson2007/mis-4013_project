@@ -48,13 +48,15 @@ try {
         }
         .lantern-card .card-title {
             font-size: 1.5rem;
-            color: #000; /* Changed font color to black for the title */
+            color: #000; /* Title color changed to black */
         }
-        .text-warning {
-            font-weight: bold;
+        h1.display-4 {
+            color: #ffd700; /* Bright yellow for the title */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Add shadow for better contrast */
         }
-        .lead {
-            color: orange; /* Changed subtitle color to orange */
+        p.lead {
+            color: #ffa500; /* Bright orange for subtitle */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Add shadow for better contrast */
         }
         footer {
             background-color: #1f1f1f;
@@ -76,7 +78,7 @@ try {
     <!-- Title Section -->
     <div class="row mb-4">
         <div class="col text-center">
-            <h1 class="display-4 text-warning">
+            <h1 class="display-4">
                 <img src="https://www.nealadamsstore.com/assets/images/unnamed-1.jpg" 
                      alt="Green Lantern Ring" style="height: 50px; margin-right: 10px;"> 
                 Explore the Lanterns
@@ -127,24 +129,4 @@ try {
 
 <!-- Footer Section -->
 <footer>
-    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="fas fa-ring text-warning"></i> Willpower.</p>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Font Awesome JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-<!-- Tippy.js for Tooltips -->
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-    // Initialize Tippy.js tooltips
-    document.addEventListener('DOMContentLoaded', () => {
-        tippy('[data-tippy-content]', {
-            animation: 'scale',
-            theme: 'light',
-        });
-    });
-</script>
-</body>
-</html>
+    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="f
