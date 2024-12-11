@@ -29,16 +29,16 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
         .lantern-card img {
-            height: 300px; /* Increased height to better display symbols */
-            object-fit: cover; /* Maintain aspect ratio and cover the container */
-            object-position: center; /* Center the image */
-            width: 100%; /* Ensure full width */
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar (Ensure this is the only navbar) -->
+<!-- Single Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Lantern Corps Universe</a>
@@ -66,7 +66,7 @@
 </nav>
 
 <div class="container my-5">
-    <!-- Title Section -->
+    <!-- Main Content -->
     <div class="row mb-4">
         <div class="col text-center">
             <h1 class="display-4 text-warning">
@@ -82,7 +82,6 @@
     <div class="row">
         <?php
         while ($corps = $corpsList->fetch_assoc()) { 
-            // Define background images for each Corps
             $backgrounds = [
                 'Green Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dfqj-d92d9f74-331a-4a8a-b286-df8b3748e7f4.jpg',
                 'Sinestro Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6deur-997df727-4538-4375-82ba-a743017873fa.jpg',
@@ -95,7 +94,6 @@
                 'White Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dctl-a77e4109-3a8c-4102-b5a1-cc03b7c8ab8c.jpg',
             ];
 
-            // Assign background image
             $backgroundImage = $backgrounds[$corps['Corps_Name']] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
         ?>
         <div class="col-md-6 mb-4">
@@ -119,23 +117,8 @@
 
 <footer class="text-center mt-5">
     <p>&copy; <?php echo date('Y'); ?> Lantern Corps Database</p>
-    <div id="ring-animation" style="width: 100px; margin: 0 auto;"></div>
-    <p>Driven by imagination and willpower</p>
 </footer>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Lottie Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-<!-- Lottie Animation Script -->
-<script>
-    lottie.loadAnimation({
-        container: document.getElementById('ring-animation'), // Target element
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: 'https://assets2.lottiefiles.com/packages/lf20_b6l7ahcz.json' // Replace with a Green Lantern-style animation
-    });
-</script>
 </body>
 </html>
