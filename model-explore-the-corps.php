@@ -2,27 +2,39 @@
 require_once 'util-db.php'; // Include the database connection utility
 
 /**
- * Fetch all Lantern data with required joins
+ * Fetch all Corps data with required joins
  * 
- * @return mysqli_result The result set containing Lantern data
+ * @return mysqli_result The result set containing Corps data
  * @throws Exception if the query fails
  */
-function getLanternsData() {
+function getCorpsData() {
     try {
         $conn = get_db_connection(); // Get the database connection
 
-        // SQL query to fetch data from all relevant tables
+        // SQL query to fetch all Corps details
         $query = "
             SELECT 
-                l.Lantern_ID, 
-                l.Lantern_Name, 
-                l.Lantern_Description, 
-                l.Lantern_Sector, 
-                c.Corps_Name AS Lantern_Corps, 
-                c.CorpsColor_Name AS Lantern_Color
-            FROM lanterns_table l
-            LEFT JOIN corps_table c ON l.Corps_ID = c.Corps_ID
-            ORDER BY c.Corps_Name, l.Lantern_Name
+                c.Corps_ID, 
+                c.Corps_Name, 
+                cc.CorpsColor_Name, 
+                ce.CorpsEmotion_Name, 
+                ch.CorpsHQ_Planet, 
+                ch.CorpsHQ_Sector, 
+                cs.CorpsHQSector_Description, 
+                c.Corps_Description, 
+                c.Corps_Oath
+            FROM 
+                corps_table c
+            LEFT JOIN 
+                corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
+            LEFT JOIN 
+                corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
+            LEFT JOIN 
+                corpshq_table ch ON c.CorpsHQ_ID = ch.CorpsHQ_ID
+            LEFT JOIN 
+                corpssectors_table cs ON ch.CorpsHQ_ID = cs.CorpsHQ_ID
+            ORDER BY 
+                c.Corps_Name;
         ";
 
         // Prepare and execute the query
@@ -36,7 +48,7 @@ function getLanternsData() {
 
         // If no data is found, throw an exception
         if ($result->num_rows === 0) {
-            throw new Exception("No Lantern data found in the database.");
+            throw new Exception("No Corps data found in the database.");
         }
 
         // Close the connection and return the result set
@@ -49,7 +61,7 @@ function getLanternsData() {
             $conn->close();
         }
         // Re-throw the exception with a meaningful message
-        throw new Exception("Error fetching Lantern data: " . $e->getMessage());
+        throw new Exception("Error fetching Corps data: " . $e->getMessage());
     }
 }
 ?>
