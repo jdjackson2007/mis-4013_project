@@ -1,6 +1,7 @@
 function getLanternsData() {
     try {
-        $conn = get_db_connection(); // Get the database connection
+        // Get the database connection
+        $conn = get_db_connection();
 
         // Corrected SQL query
         $query = "
@@ -18,15 +19,24 @@ function getLanternsData() {
                 GROUP_CONCAT(DISTINCT ch.CorpsHQ_Planet) AS planets,
                 GROUP_CONCAT(DISTINCT ch.CorpsHQ_Sector) AS sectors,
                 GROUP_CONCAT(DISTINCT lsc.LanternsSpecialClasses_ClassName) AS classes
-            FROM notablelanterns_table nl
-            LEFT JOIN corps_table c ON FIND_IN_SET(c.Corps_ID, nl.NotableLanterns_MultipleCorps)
-            LEFT JOIN corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
-            LEFT JOIN corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
-            LEFT JOIN corpshq_table ch ON c.CorpsHQ_ID = ch.CorpsHQ_ID
-            LEFT JOIN lanternclasses_table lc ON nl.NotableLanterns_ID = lc.NotableLanterns_ID
-            LEFT JOIN lanternspecialclasses_table lsc ON lc.SpecialClasses_ID = lsc.LanternSpecialClasses_ID
-            GROUP BY nl.NotableLanterns_Name, nl.NotableLanterns_MultipleCorps
-            ORDER BY nl.NotableLanterns_Name;
+            FROM 
+                notablelanterns_table nl
+            LEFT JOIN 
+                corps_table c ON FIND_IN_SET(c.Corps_ID, nl.NotableLanterns_MultipleCorps)
+            LEFT JOIN 
+                corpscolor_table cc ON c.CorpsColor_ID = cc.CorpsColor_ID
+            LEFT JOIN 
+                corpsemotion_table ce ON c.CorpsEmotion_ID = ce.CorpsEmotion_ID
+            LEFT JOIN 
+                corpshq_table ch ON c.CorpsHQ_ID = ch.CorpsHQ_ID
+            LEFT JOIN 
+                lanternclasses_table lc ON nl.NotableLanterns_ID = lc.NotableLanterns_ID
+            LEFT JOIN 
+                lanternspecialclasses_table lsc ON lc.SpecialClasses_ID = lsc.LanternSpecialClasses_ID
+            GROUP BY 
+                nl.NotableLanterns_Name, nl.NotableLanterns_MultipleCorps
+            ORDER BY 
+                nl.NotableLanterns_Name;
         ";
 
         // Prepare and execute the query
@@ -40,19 +50,4 @@ function getLanternsData() {
 
         // If no data is found, throw an exception
         if ($result->num_rows === 0) {
-            throw new Exception("No Lantern data found in the database.");
-        }
-
-        // Close the connection and return the result set
-        $conn->close();
-        return $result;
-
-    } catch (Exception $e) {
-        // Close the connection if it exists
-        if (isset($conn) && $conn->ping()) {
-            $conn->close();
-        }
-        // Re-throw the exception with a meaningful message
-        throw new Exception("Error fetching Lantern data: " . $e->getMessage());
-    }
-}
+            throw new Exception("No Lantern data found in the
