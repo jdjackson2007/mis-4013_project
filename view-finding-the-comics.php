@@ -4,6 +4,7 @@ require_once 'model-finding-the-comics.php';
 try {
     $comicSources = getComicSources();
     $topLanternComics = getTopLanternComics();
+    $premiumComics = getPremiumComics();
 } catch (Exception $e) {
     die("Error loading data: " . $e->getMessage());
 }
@@ -49,6 +50,10 @@ try {
             color: #ffd700;
             font-size: 1.2rem;
         }
+        h2 {
+            margin-top: 20px;
+            color: #ffa500;
+        }
     </style>
 </head>
 <body>
@@ -59,14 +64,14 @@ try {
             <h1 class="display-4 text-warning animate__animated animate__bounceInDown">
                 <i class="fas fa-book"></i> Finding the Comics
             </h1>
-            <p class="lead text-muted">Explore the best sources for comics, ratings, and collectibles.</p>
+            <p class="lead text-muted">Explore the best sources for comics, collectibles, and daily top picks.</p>
         </div>
     </div>
 
-    <!-- Top Lantern Comics Section -->
+    <!-- Top Lantern Comics Under $10 -->
     <div class="row mb-5">
         <div class="col text-center">
-            <h2 class="text-warning">Top Lantern Comics Today</h2>
+            <h2 class="text-warning">Top Lantern Comics Under $10</h2>
         </div>
         <?php foreach ($topLanternComics as $comic) { ?>
         <div class="col-md-6 col-lg-4 mb-4">
@@ -83,8 +88,31 @@ try {
         <?php } ?>
     </div>
 
+    <!-- Premium Comics Over $10,000 -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h2 class="text-warning">Premium Comics Over $10,000</h2>
+        </div>
+        <?php foreach ($premiumComics as $comic) { ?>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card top-comic-card h-100">
+                <div class="card-body">
+                    <h3 class="card-title text-warning"><?php echo htmlspecialchars($comic['title']); ?></h3>
+                    <p><?php echo htmlspecialchars($comic['description']); ?></p>
+                    <p><strong>Price:</strong> <?php echo htmlspecialchars($comic['price']); ?></p>
+                    <p><strong>Seller:</strong> <?php echo htmlspecialchars($comic['seller']); ?></p>
+                    <p class="rating"><strong>Rating:</strong> <?php echo htmlspecialchars($comic['rating']); ?></p>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+
     <!-- Comic Sources Section -->
     <div class="row">
+        <div class="col text-center">
+            <h2 class="text-warning">Other Comic Sources</h2>
+        </div>
         <?php foreach ($comicSources as $source) { ?>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card comic-card h-100 animate__animated animate__fadeInUp">
@@ -118,14 +146,11 @@ try {
 <script>
     // Add fun GSAP animations
     document.addEventListener('DOMContentLoaded', () => {
-        gsap.from(".comic-card", { 
+        gsap.from(".comic-card, .top-comic-card", { 
             duration: 1, 
             opacity: 0, 
             y: 50, 
             stagger: 0.3, 
             ease: "power2.out" 
         });
-    });
-</script>
-</body>
-</html>
+    }
