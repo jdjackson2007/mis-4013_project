@@ -1,25 +1,16 @@
-<?php
-require_once 'util-db.php'; // Include the database connection utility
-
-/**
- * Fetch all Lantern data with relevant joins and multiple Corps affiliations
- * 
- * @return mysqli_result The result set containing Lantern data
- * @throws Exception if the query fails
- */
 function getLanternsData() {
     try {
         $conn = get_db_connection(); // Get the database connection
 
-        // SQL query to fetch Lantern details and their relationships
+        // Corrected SQL query
         $query = "
             SELECT 
                 nl.NotableLanterns_Name AS name,
-                nl.NotableLanterns_EarthVersion AS earth_version,
-                nl.NotableLanterns_Alias AS alias,
-                nl.NotableLanterns_Bio AS bio,
-                nl.NotableLanterns_FirstAppearance AS first_appearance,
-                nl.NotableLanterns_Status AS status,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_EarthVersion) AS earth_version,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Alias) AS alias,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Bio) AS bio,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_FirstAppearance) AS first_appearance,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Status) AS status,
                 nl.NotableLanterns_MultipleCorps AS multiple_corps,
                 GROUP_CONCAT(DISTINCT c.Corps_Name) AS corps,
                 GROUP_CONCAT(DISTINCT cc.CorpsColor_Name) AS colors,
@@ -34,8 +25,8 @@ function getLanternsData() {
             LEFT JOIN corpshq_table ch ON c.CorpsHQ_ID = ch.CorpsHQ_ID
             LEFT JOIN lanternclasses_table lc ON nl.NotableLanterns_ID = lc.NotableLanterns_ID
             LEFT JOIN lanternspecialclasses_table lsc ON lc.SpecialClasses_ID = lsc.LanternSpecialClasses_ID
-            GROUP BY nl.NotableLanterns_Name
-            ORDER BY nl.NotableLanterns_Name
+            GROUP BY nl.NotableLanterns_Name, nl.NotableLanterns_MultipleCorps
+            ORDER BY nl.NotableLanterns_Name;
         ";
 
         // Prepare and execute the query
@@ -65,4 +56,3 @@ function getLanternsData() {
         throw new Exception("Error fetching Lantern data: " . $e->getMessage());
     }
 }
-?>
