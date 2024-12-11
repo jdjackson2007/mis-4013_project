@@ -15,18 +15,18 @@ function getLanternsData() {
         $query = "
             SELECT 
                 nl.NotableLanterns_Name AS name,
-                nl.NotableLanterns_EarthVersion AS earth_version,
-                nl.NotableLanterns_Alias AS alias,
-                nl.NotableLanterns_Bio AS bio,
-                nl.NotableLanterns_FirstAppearance AS first_appearance,
-                nl.NotableLanterns_Status AS status,
+                GROUP_CONCAT(nl.NotableLanterns_EarthVersion) AS earth_version,
+                GROUP_CONCAT(nl.NotableLanterns_Alias) AS alias,
+                GROUP_CONCAT(nl.NotableLanterns_Bio) AS bio,
+                GROUP_CONCAT(nl.NotableLanterns_FirstAppearance) AS first_appearance,
+                GROUP_CONCAT(nl.NotableLanterns_Status) AS status,
                 nl.NotableLanterns_MultipleCorps AS multiple_corps,
-                c.Corps_Name AS corps,
-                cc.CorpsColor_Name AS colors,
-                ce.CorpsEmotion_Name AS emotions,
-                ch.CorpsHQ_Planet AS planets,
-                ch.CorpsHQ_Sector AS sectors,
-                lsc.LanternsSpecialClasses_ClassName AS classes
+                GROUP_CONCAT(c.Corps_Name) AS corps,
+                GROUP_CONCAT(cc.CorpsColor_Name) AS colors,
+                GROUP_CONCAT(ce.CorpsEmotion_Name) AS emotions,
+                GROUP_CONCAT(ch.CorpsHQ_Planet) AS planets,
+                GROUP_CONCAT(ch.CorpsHQ_Sector) AS sectors,
+                GROUP_CONCAT(lsc.LanternsSpecialClasses_ClassName) AS classes
             FROM 
                 notablelanterns_table nl
             LEFT JOIN 
