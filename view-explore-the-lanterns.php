@@ -3,7 +3,7 @@
     <div class="row mb-4">
         <div class="col text-center">
             <h1 class="display-4 text-warning">Explore the Lanterns</h1>
-            <p class="lead">Meet the heroes and villains of the Lantern Corps Universe.</p>
+            <p class="lead">Meet the legendary Lanterns from across the universe.</p>
         </div>
     </div>
 
@@ -13,19 +13,33 @@
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card lantern-card h-100">
                 <div class="card-body">
-                    <h3 class="card-title text-warning"><?php echo htmlspecialchars($lantern['NotableLanterns_Name']); ?></h3>
-                    <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['NotableLanterns_Alias'] ?: 'Unknown'); ?></p>
-                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['Lantern_Corps']); ?></p>
-                    <p><strong>Color:</strong> <?php echo htmlspecialchars($lantern['Lantern_Color']); ?></p>
-                    <p><strong>Emotion:</strong> <?php echo htmlspecialchars($lantern['Lantern_Emotion']); ?></p>
-                    <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['NotableLanterns_FirstAppearance']); ?></p>
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['NotableLanterns_Status']); ?></p>
-                    <p><strong>Class:</strong> <?php echo htmlspecialchars($lantern['Lantern_Class'] ?: 'N/A'); ?></p>
-                    <p><strong>Class Description:</strong> <?php echo htmlspecialchars($lantern['Class_Description'] ?: 'N/A'); ?></p>
-                    <p><strong>Bio:</strong> <?php echo nl2br(htmlspecialchars($lantern['NotableLanterns_Bio'])); ?></p>
+                    <h3 class="card-title text-warning" data-tippy-content="<?php echo htmlspecialchars($lantern['bio']); ?>">
+                        <?php echo htmlspecialchars($lantern['name']); ?>
+                    </h3>
+                    <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
+                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps']); ?></p>
+                    <p><strong>Colors:</strong> <?php echo htmlspecialchars($lantern['colors']); ?></p>
+                    <p><strong>Emotions:</strong> <?php echo htmlspecialchars($lantern['emotions']); ?></p>
+                    <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance']); ?></p>
+                    <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status']); ?></p>
+                    <p><strong>Class:</strong> <?php echo htmlspecialchars($lantern['classes'] ?: 'N/A'); ?></p>
                 </div>
             </div>
         </div>
         <?php } ?>
     </div>
 </div>
+
+<!-- Tippy.js -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+    // Initialize Tippy.js tooltips
+    document.addEventListener('DOMContentLoaded', () => {
+        tippy('[data-tippy-content]', {
+            animation: 'scale',
+            theme: 'light',
+        });
+    });
+</script>
+
