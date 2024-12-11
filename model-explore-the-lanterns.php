@@ -2,7 +2,7 @@
 require_once 'util-db.php'; // Include the database connection utility
 
 /**
- * Fetch all Lantern data from notablelanterns_table
+ * Fetch all Lantern data, including Corps name and classes
  * 
  * @return mysqli_result The result set containing Lantern data
  * @throws Exception if the query fails
@@ -11,21 +11,30 @@ function getLanternsData() {
     try {
         $conn = get_db_connection(); // Get the database connection
 
-        // Simple query to fetch data
+        // Query to fetch Lantern data with Corps name and classes
         $query = "
             SELECT 
-                NotableLanterns_ID AS id,
-                NotableLanterns_Name AS name,
-                Corps_ID AS corps,
-                NotableLanterns_EarthVersion AS earth_version,
-                NotableLanterns_Alias AS alias,
-                NotableLanterns_Bio AS bio,
-                NotableLanterns_FirstAppearance AS first_appearance,
-                NotableLanterns_Status AS status
+                nl.NotableLanterns_ID AS id,
+                nl.NotableLanterns_Name AS name,
+                c.Corps_Name AS corps_name,
+                nl.NotableLanterns_EarthVersion AS earth_version,
+                nl.NotableLanterns_Alias AS alias,
+                nl.NotableLanterns_Bio AS bio,
+                nl.NotableLanterns_FirstAppearance AS first_appearance,
+                nl.NotableLanterns_Status AS status,
+                GROUP_CONCAT(DISTINCT lsc.LanternsSpecialClasses_ClassName SEPARATOR ', ') AS classes
             FROM 
-                notablelanterns_table
+                notablelanterns_table nl
+            LEFT JOIN 
+                corps_table c ON nl.Corps_ID = c.Corps_ID
+            LEFT JOIN 
+                lanternclasses_table lc ON nl.NotableLanterns_ID = lc.NotableLanterns_ID
+            LEFT JOIN 
+                lanternspecialclasses_table lsc ON lc.SpecialClasses_ID = lsc.LanternSpecialClasses_ID
+            GROUP BY 
+                nl.NotableLanterns_Name, nl.NotableLanterns_EarthVersion, nl.NotableLanterns_FirstAppearance, c.Corps_Name
             ORDER BY 
-                NotableLanterns_Name;
+                nl.NotableLanterns_Name;
         ";
 
         // Execute the query
