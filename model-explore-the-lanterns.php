@@ -11,18 +11,17 @@ function getLanternsData() {
     try {
         $conn = get_db_connection(); // Get the database connection
 
-        // Query to fetch Lantern data with Corps name and classes
+        // Corrected SQL query
         $query = "
             SELECT 
-                nl.NotableLanterns_ID AS id,
                 nl.NotableLanterns_Name AS name,
-                c.Corps_Name AS corps_name,
-                nl.NotableLanterns_EarthVersion AS earth_version,
-                nl.NotableLanterns_Alias AS alias,
-                nl.NotableLanterns_Bio AS bio,
-                nl.NotableLanterns_FirstAppearance AS first_appearance,
-                nl.NotableLanterns_Status AS status,
-                GROUP_CONCAT(DISTINCT lsc.LanternsSpecialClasses_ClassName SEPARATOR ', ') AS classes
+                GROUP_CONCAT(DISTINCT c.Corps_Name) AS corps_name,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_EarthVersion) AS earth_version,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Alias) AS alias,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Bio) AS bio,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_FirstAppearance) AS first_appearance,
+                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Status) AS status,
+                GROUP_CONCAT(DISTINCT lsc.LanternsSpecialClasses_ClassName) AS classes
             FROM 
                 notablelanterns_table nl
             LEFT JOIN 
@@ -32,7 +31,7 @@ function getLanternsData() {
             LEFT JOIN 
                 lanternspecialclasses_table lsc ON lc.SpecialClasses_ID = lsc.LanternSpecialClasses_ID
             GROUP BY 
-                nl.NotableLanterns_Name, nl.NotableLanterns_EarthVersion, nl.NotableLanterns_FirstAppearance, c.Corps_Name
+                nl.NotableLanterns_Name
             ORDER BY 
                 nl.NotableLanterns_Name;
         ";
@@ -63,6 +62,10 @@ function getLanternsData() {
 
         // Re-throw the exception with a meaningful message
         throw new Exception("Error fetching Lantern data: " . $e->getMessage());
+    }
+}
+?>
+
     }
 }
 ?>
