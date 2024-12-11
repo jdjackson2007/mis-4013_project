@@ -53,7 +53,7 @@
             <div class="button-group">
                 <a href="explore-the-corps.php" class="btn btn-primary">Explore the Corps</a>
                 <a href="explore-the-lanterns.php" class="btn btn-success">Explore the Lanterns</a>
-                <a href="finding-the-comics.php" class="btn btn-warning">Finding the Comics</a>
+                <a href="view-finding-the-comics.php" class="btn btn-warning">Finding the Comics</a>
             </div>
         </div>
     </main>
