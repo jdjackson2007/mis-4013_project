@@ -86,13 +86,22 @@
     </div>
 </div>
 
-<!-- Footer -->
 <footer class="text-center mt-5">
-    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Database | Built with <i class="fas fa-heart text-danger"></i> and <i class="fas fa-ring text-warning"></i></p>
+    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Database</p>
+    <div id="ring-animation" style="width: 100px; margin: 0 auto;"></div>
+    <p>Driven by imagination and willpower</p>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Lottie Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
 
-</body>
-</html>
+<!-- Lottie Animation Script -->
+<script>
+    lottie.loadAnimation({
+        container: document.getElementById('ring-animation'), // Target element
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets2.lottiefiles.com/packages/lf20_b6l7ahcz.json' // Replace with a Green Lantern-style animation
+    });
+</script>
