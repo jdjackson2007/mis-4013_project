@@ -1,3 +1,40 @@
+<?php
+require_once 'model-explore-the-lanterns.php';
+
+try {
+    $lanternsList = getLanternsData(); // Fetch Lantern data
+} catch (Exception $e) {
+    die("Error loading Lantern data: " . $e->getMessage());
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore the Lanterns</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+        }
+        .lantern-card {
+            background-color: #1f1f1f;
+            border: none;
+            border-radius: 8px;
+        }
+        .lantern-card .card-body {
+            color: #fff;
+        }
+        .text-warning {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 <div class="container my-5">
     <!-- Title Section -->
     <div class="row mb-4">
@@ -13,62 +50,13 @@
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card lantern-card h-100">
                 <div class="card-body">
-                    <h3 class="card-title text-warning" data-tippy-content="<?php echo htmlspecialchars($lantern['bio']); ?>">
-                        <?php echo htmlspecialchars($lantern['name']); ?>
-                    </h3>
+                    <h3 class="card-title text-warning"><?php echo htmlspecialchars($lantern['name']); ?></h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
-                    
-                    <!-- Display Corps Membership -->
-                    <p><strong>Primary Corps:</strong></p>
-                    <ul>
-                        <?php
-                        $corps = explode(',', $lantern['corps']); // Split corps by commas
-                        foreach ($corps as $index => $corp) {
-                            if ($index === 0) {
-                                // Highlight the first Corps
-                                echo '<li><strong>' . htmlspecialchars(trim($corp)) . ' (Primary)</strong></li>';
-                            } else {
-                                echo '<li>' . htmlspecialchars(trim($corp)) . '</li>';
-                            }
-                        }
-                        ?>
-                    </ul>
-                    
-                    <!-- Colors -->
-                    <p><strong>Associated Colors:</strong></p>
-                    <ul>
-                        <?php
-                        $colors = explode(',', $lantern['colors']);
-                        foreach ($colors as $color) {
-                            echo '<li>' . htmlspecialchars(trim($color)) . '</li>';
-                        }
-                        ?>
-                    </ul>
-                    
-                    <!-- Emotions -->
-                    <p><strong>Associated Emotions:</strong></p>
-                    <ul>
-                        <?php
-                        $emotions = explode(',', $lantern['emotions']);
-                        foreach ($emotions as $emotion) {
-                            echo '<li>' . htmlspecialchars(trim($emotion)) . '</li>';
-                        }
-                        ?>
-                    </ul>
-                    
+                    <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps'] ?: 'Unknown Corps'); ?></p>
+                    <p><strong>Earth Version:</strong> <?php echo htmlspecialchars($lantern['earth_version'] ?: 'None'); ?></p>
                     <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance'] ?: 'Unknown'); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status'] ?: 'Active'); ?></p>
-                    
-                    <!-- Classes -->
-                    <p><strong>Special Classes:</strong></p>
-                    <ul>
-                        <?php
-                        $classes = explode(',', $lantern['classes']);
-                        foreach ($classes as $class) {
-                            echo '<li>' . htmlspecialchars(trim($class)) . '</li>';
-                        }
-                        ?>
-                    </ul>
+                    <p><strong>Bio:</strong> <?php echo htmlspecialchars($lantern['bio'] ?: 'No bio available'); ?></p>
                 </div>
             </div>
         </div>
@@ -76,15 +64,7 @@
     </div>
 </div>
 
-<!-- Tippy.js -->
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-    // Initialize Tippy.js tooltips
-    document.addEventListener('DOMContentLoaded', () => {
-        tippy('[data-tippy-content]', {
-            animation: 'scale',
-            theme: 'light',
-        });
-    });
-</script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
