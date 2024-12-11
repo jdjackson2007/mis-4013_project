@@ -56,11 +56,11 @@ while ($corps = $corpsList->fetch_assoc()) {
     // Define background images for each Corps
     $backgrounds = [
         'Green Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dfqj-d92d9f74-331a-4a8a-b286-df8b3748e7f4.jpg',
-        'Sinestro Lantern Corps' => 'https://i.ytimg.com/vi/87YQOtpqhz0/maxresdefault_live.jpg',
+        'Sinestro Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6deur-997df727-4538-4375-82ba-a743017873fa.jpg',
         'Red Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dc5w-90f39292-92d8-4486-a909-27b6d5479d6c.jpg',
         'Blue Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2012/09/05/447873_blue-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
         'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
-        'Star Sapphire Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/66a83b6c-e211-4afb-b88a-5f4700f49d57/d7bommh-a7327852-5959-47a1-9ffd-e0cf5f3e0fdd.jpg',
+        'Star Sapphire Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/66a83b6c-e211-4afb-b88a-5f4700f49d57/d7bommh-a7327852-5959-47a1-9ffd-e0cf5f3e0fdd.jpg/v1/fill/w_1024,h_647,q_75,strp/star_sapphire_corps_wallpaper_by_laffler_d7bommh-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQ3IiwicGF0aCI6IlwvZlwvNjZhODNiNmMtZTIxMS00YWZiLWI4OGEtNWY0NzAwZjQ5ZDU3XC9kN2JvbW1oLWE3MzI3ODUyLTU5NTktNDdhMS05ZmZkLWUwY2Y1ZjNlMGZkZC5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.cC3nkhX_MXkzYa2m_3EEglQsxeNZ3gQSNZHJhNYdriA',
         'Orange Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2015/12/15/1057780_orange-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
         'Black Lantern Corps' => 'https://www.desktopbackground.org/p/2014/09/10/822692_black-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
         'White Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dctl-a77e4109-3a8c-4102-b5a1-cc03b7c8ab8c.jpg',
@@ -68,7 +68,7 @@ while ($corps = $corpsList->fetch_assoc()) {
 
     // Assign a manual background for Sinestro Corps if needed
     if ($corps['Corps_Name'] === 'Sinestro Lantern Corps') {
-        $backgroundImage = 'https://i.ytimg.com/vi/87YQOtpqhz0/maxresdefault_live.jpg'; // Manual override
+        $backgroundImage = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6deur-997df727-4538-4375-82ba-a743017873fa.jpg'; // Manual override
     } else {
         $backgroundImage = $backgrounds[$corps['Corps_Name']] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
     }
