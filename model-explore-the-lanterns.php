@@ -15,18 +15,18 @@ function getLanternsData() {
         $query = "
             SELECT 
                 nl.NotableLanterns_Name AS name,
-                GROUP_CONCAT(DISTINCT nl.NotableLanterns_EarthVersion) AS earth_version,
-                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Alias) AS alias,
-                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Bio) AS bio,
-                GROUP_CONCAT(DISTINCT nl.NotableLanterns_FirstAppearance) AS first_appearance,
-                GROUP_CONCAT(DISTINCT nl.NotableLanterns_Status) AS status,
+                nl.NotableLanterns_EarthVersion AS earth_version,
+                nl.NotableLanterns_Alias AS alias,
+                nl.NotableLanterns_Bio AS bio,
+                nl.NotableLanterns_FirstAppearance AS first_appearance,
+                nl.NotableLanterns_Status AS status,
                 nl.NotableLanterns_MultipleCorps AS multiple_corps,
-                GROUP_CONCAT(DISTINCT c.Corps_Name SEPARATOR ', ') AS corps,
-                GROUP_CONCAT(DISTINCT cc.CorpsColor_Name SEPARATOR ', ') AS colors,
-                GROUP_CONCAT(DISTINCT ce.CorpsEmotion_Name SEPARATOR ', ') AS emotions,
-                GROUP_CONCAT(DISTINCT ch.CorpsHQ_Planet SEPARATOR ', ') AS planets,
-                GROUP_CONCAT(DISTINCT ch.CorpsHQ_Sector SEPARATOR ', ') AS sectors,
-                GROUP_CONCAT(DISTINCT lsc.LanternsSpecialClasses_ClassName SEPARATOR ', ') AS classes
+                c.Corps_Name AS corps,
+                cc.CorpsColor_Name  AS colors,
+                ce.CorpsEmotion_Name  AS emotions,
+                ch.CorpsHQ_Planet  AS planets,
+                ch.CorpsHQ_Sector  AS sectors,
+                lsc.LanternsSpecialClasses_ClassName AS classes
             FROM 
                 notablelanterns_table nl
             LEFT JOIN 
