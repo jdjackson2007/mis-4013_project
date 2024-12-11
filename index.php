@@ -17,7 +17,7 @@
             flex-direction: column;
         }
         body {
-            background-image: url('https://i.pinimg.com/474x/59/81/2b/59812b7c40f6462e8ca670a96f2f4ffe--white-lantern-corps-green-lantern-oath.jpg');
+            background-image: url('https://th.bing.com/th/id/R.e7a7d74b77f547f3f54a1bd578c7278d?rik=%2fjEgpfKtDsQbLw&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2fc%2f1%2f4%2f158778.jpg&ehk=rH5NtfUZsipTvGOyVB21RezugJpk4r3REVjB4uHocWU%3d&risl=&pid=ImgRaw&r=0');
             background-size: 100% 100%; /* Ensures it fits the screen */
             background-repeat: no-repeat;
             background-attachment: fixed;
