@@ -15,5 +15,5 @@ try {
 
 require_once 'view-finding-the-comics.php';
 
-require_once 'view-footer.php'; /
+require_once 'view-footer.php'; 
 ?>
