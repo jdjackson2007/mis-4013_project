@@ -1,17 +1,8 @@
 <?php
-require_once 'util-db.php'; // Include the database connection utility
-
-/**
- * Fetch all Lantern data, including Corps name and classes
- * 
- * @return mysqli_result The result set containing Lantern data
- * @throws Exception if the query fails
- */
+require_once 'util-db.php'; 
 function getLanternsData() {
     try {
-        $conn = get_db_connection(); // Get the database connection
-
-        // Corrected SQL query
+        $conn = get_db_connection(); 
         $query = "
             SELECT 
                 nl.NotableLanterns_Name AS name,
@@ -36,7 +27,7 @@ function getLanternsData() {
                 nl.NotableLanterns_Name;
         ";
 
-        // Execute the query
+        
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             throw new Exception("Failed to prepare SQL statement: " . $conn->error);
@@ -45,22 +36,22 @@ function getLanternsData() {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // If no data is found, throw an exception
+       
         if ($result->num_rows === 0) {
             throw new Exception("No Lantern data found in the database.");
         }
 
-        // Close the connection and return the result set
+       
         $conn->close();
         return $result;
 
     } catch (Exception $e) {
-        // Close the connection if it exists
+        
         if (isset($conn) && $conn->ping()) {
             $conn->close();
         }
 
-        // Re-throw the exception with a meaningful message
+        
         throw new Exception("Error fetching Lantern data: " . $e->getMessage());
     }
 }
