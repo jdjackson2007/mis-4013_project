@@ -3,6 +3,11 @@ require_once 'model-finding-the-comics.php'; // Include model for fetching comic
 
 $pageTitle = "Finding the Comics"; // Set the page title
 
+require_once 'util-db.php';
+require_once 'fetch-finding-the-comics.php';
+
+fetchAndStoreComics();
+
 // Fetch comics data
 try {
     $comicsList = getComicsFromDatabase();
