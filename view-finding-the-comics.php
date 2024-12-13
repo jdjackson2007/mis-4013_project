@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #e9ecef;
             margin: 0;
             padding: 0;
         }
@@ -18,22 +18,22 @@
             max-width: 900px;
             margin: 20px auto;
             padding: 20px;
-            background: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
             border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         }
         .comic {
             border-bottom: 1px solid #ddd;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
             border-radius: 5px;
-            padding: 15px;
-            transition: transform 0.3s;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .comic:hover {
-            transform: scale(1.02);
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.03);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
         }
         .comic:last-child {
             border-bottom: none;
@@ -42,28 +42,24 @@
             font-size: 1.8em;
             font-weight: bold;
             margin-bottom: 10px;
+            color: #007bff;
         }
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .comic-title:hover {
+            text-decoration: underline;
         }
         footer {
             text-align: center;
             margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
+            padding: 15px;
+            background-color: #343a40;
             color: white;
         }
         footer a {
             color: #f8d347;
             text-decoration: none;
         }
-        .text-primary {
-            font-size: 1.1em;
-            text-decoration: none;
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -79,7 +75,11 @@
                     <?php if (!empty($comic['details'])) { ?>
                         <ul>
                             <?php foreach ($comic['details'] as $detail) { ?>
-                                <li><a href="<?php echo htmlspecialchars($detail); ?>" target="_blank" class="text-primary">Visit <?php echo htmlspecialchars(parse_url($detail, PHP_URL_HOST)); ?></a></li>
+                                <li>
+                                    <a href="<?php echo htmlspecialchars($detail); ?>" target="_blank" class="text-primary">
+                                        Visit <?php echo htmlspecialchars(parse_url($detail, PHP_URL_HOST)); ?>
+                                    </a>
+                                </li>
                             <?php } ?>
                         </ul>
                     <?php } ?>
