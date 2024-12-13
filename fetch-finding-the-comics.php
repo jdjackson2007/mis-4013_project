@@ -7,7 +7,7 @@ require_once 'util-db.php'; // Your database connection
 function fetchAndStoreComics() {
     $conn = get_db_connection(); // Connect to the database
 
-    // List of websites to scrape
+    // List of supported websites with their methods
     $websites = [
         [
             'name' => 'Midtown Comics',
@@ -18,21 +18,29 @@ function fetchAndStoreComics() {
             'name' => 'Heritage Auctions',
             'url' => 'https://comics.ha.com/',
             'fetch_function' => 'fetchHeritageComics',
+        ],
+        [
+            'name' => 'League of Comic Geeks',
+            'url' => 'https://leagueofcomicgeeks.com/',
+            'fetch_function' => 'fetchLeagueOfComics',
         ]
     ];
 
-    // Loop through each website and fetch data
     foreach ($websites as $website) {
-        $data = call_user_func($website['fetch_function'], $website['url']);
+        echo "Fetching data from: " . $website['name'] . "<br>";
 
-        // Store each comic in the database
+        $data = call_user_func($website['fetch_function'], $website['url']);
+        print_r($data); // Debugging: Print fetched data
+
+        // Insert data into comics_table
         foreach ($data as $comic) {
             saveComicToDatabase($conn, $comic);
         }
     }
 
-    $conn->close(); // Close the database connection
+    $conn->close(); // Close the connection
 }
+
 
 /**
  * Fetch comics from Midtown Comics.
