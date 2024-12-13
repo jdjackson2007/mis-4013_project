@@ -1,7 +1,12 @@
 <?php
 require_once 'util-db.php'; // Your database connection
-require_once 'simple_html_dom.php'; // Include Simple HTML DOM parser
-
+$dom = new DOMDocument();
+@$dom->loadHTML(file_get_contents('https://example.com'));
+$xpath = new DOMXPath($dom);
+$elements = $xpath->query("//div[@class='example-class']");
+foreach ($elements as $element) {
+    echo $element->nodeValue . "<br>";
+}
 /**
  * Fetch data from websites and populate comics_table.
  */
