@@ -2,7 +2,7 @@
 require_once 'model-explore-the-lanterns.php';
 
 try {
-    $lanternsList = getLanternsData(); // Fetch Lantern data
+    $lanternsList = getLanternsData(); 
 } catch (Exception $e) {
     die("Error loading Lantern data: " . $e->getMessage());
 }
@@ -14,9 +14,9 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore the Lanterns</title>
-    <!-- Bootstrap CSS -->
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
@@ -48,12 +48,12 @@ try {
             font-size: 1.5rem;
         }
         h1.display-4 {
-            color: #ffd700; /* Bright yellow for the title */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Add shadow for better contrast */
+            color: #ffd700; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); 
         }
         p.lead {
-            color: #ffa500; /* Bright orange for subtitle */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Add shadow for better contrast */
+            color: #ffa500; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); 
         }
         footer {
             background-color: #1f1f1f;
@@ -72,7 +72,7 @@ try {
 </head>
 <body>
 <div class="container my-5">
-    <!-- Title Section -->
+    
     <div class="row mb-4">
         <div class="col text-center">
             <h1 class="display-4">
@@ -84,7 +84,7 @@ try {
         </div>
     </div>
 
-    <!-- Lanterns Section -->
+    
     <div class="row">
         <?php 
         $backgrounds = [
@@ -121,12 +121,12 @@ try {
     </div>
 </div>
 
-<!-- Footer Section -->
+
 <footer>
     <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="fas fa-code text-success"></i> Code.</p>
 </footer>
 
-<!-- Bootstrap JS Bundle -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
