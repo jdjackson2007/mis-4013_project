@@ -11,7 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             background: url('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582317527i/24395239.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-size: 100% 100%;
             margin: 0;
             padding: 0;
         }
