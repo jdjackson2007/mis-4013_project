@@ -1,10 +1,10 @@
 <?php
-require_once 'model-finding-the-comics.php'; // Include the model to fetch comic data
-require_once 'view-header.php'; // Include the header file
+require_once 'model-finding-the-comics.php'; 
+require_once 'view-header.php'; 
 
-$pageTitle = "Finding the Comics"; // Page title
+$pageTitle = "Finding the Comics"; 
 
-// Fetch comics data
+
 try {
     $comicsList = getComicsData();
 } catch (Exception $e) {
@@ -12,8 +12,8 @@ try {
     error_log("Error fetching comics: " . $e->getMessage());
 }
 
-// Include the view to render the page
+
 require_once 'view-finding-the-comics.php';
 
-require_once 'view-footer.php'; // Include the footer file
+require_once 'view-footer.php'; /
 ?>
