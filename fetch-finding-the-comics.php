@@ -1,19 +1,13 @@
 <?php
 require_once 'util-db.php'; // Your database connection
-$dom = new DOMDocument();
-@$dom->loadHTML(file_get_contents('https://example.com'));
-$xpath = new DOMXPath($dom);
-$elements = $xpath->query("//div[@class='example-class']");
-foreach ($elements as $element) {
-    echo $element->nodeValue . "<br>";
-}
+
 /**
  * Fetch data from websites and populate comics_table.
  */
 function fetchAndStoreComics() {
     $conn = get_db_connection(); // Connect to the database
 
-    // List of supported websites with their methods
+    // List of websites to scrape
     $websites = [
         [
             'name' => 'Midtown Comics',
@@ -24,41 +18,49 @@ function fetchAndStoreComics() {
             'name' => 'Heritage Auctions',
             'url' => 'https://comics.ha.com/',
             'fetch_function' => 'fetchHeritageComics',
-        ],
-        [
-            'name' => 'League of Comic Geeks',
-            'url' => 'https://leagueofcomicgeeks.com/',
-            'fetch_function' => 'fetchLeagueOfComics',
         ]
     ];
 
+    // Loop through each website and fetch data
     foreach ($websites as $website) {
         $data = call_user_func($website['fetch_function'], $website['url']);
 
-        // Insert data into comics_table
+        // Store each comic in the database
         foreach ($data as $comic) {
             saveComicToDatabase($conn, $comic);
         }
     }
 
-    $conn->close(); // Close the connection
+    $conn->close(); // Close the database connection
 }
 
 /**
- * Fetch comics from Midtown Comics (example using cURL).
+ * Fetch comics from Midtown Comics.
  */
 function fetchMidtownComics($url) {
-    // Example data array
-    $comics = [];
+    $htmlContent = @file_get_contents($url); // Fetch the page content
+    if (!$htmlContent) {
+        error_log("Failed to fetch HTML from $url");
+        return [];
+    }
 
-    // Scrape data using cURL and parse it with Simple HTML DOM
-    $html = file_get_html($url);
-    foreach ($html->find('.comic-item') as $item) {
+    $dom = new DOMDocument();
+    @$dom->loadHTML($htmlContent); // Suppress warnings for invalid HTML
+    $xpath = new DOMXPath($dom);
+
+    $comics = [];
+    $items = $xpath->query("//div[contains(@class, 'comic-item')]"); // Update selector to match actual website structure
+
+    foreach ($items as $item) {
+        $title = $xpath->query(".//div[contains(@class, 'comic-title')]", $item)->item(0);
+        $description = $xpath->query(".//div[contains(@class, 'comic-description')]", $item)->item(0);
+        $price = $xpath->query(".//div[contains(@class, 'price')]", $item)->item(0);
+
         $comics[] = [
-            'title' => $item->find('.comic-title', 0)->plaintext,
-            'description' => $item->find('.comic-description', 0)->plaintext,
+            'title' => $title ? trim($title->nodeValue) : 'N/A',
+            'description' => $description ? trim($description->nodeValue) : 'No description',
             'seller' => 'Midtown Comics',
-            'price' => filter_var($item->find('.price', 0)->plaintext, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+            'price' => $price ? filter_var($price->nodeValue, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0,
             'rating' => null,
             'category' => 'top',
             'url' => $url,
@@ -69,47 +71,34 @@ function fetchMidtownComics($url) {
 }
 
 /**
- * Fetch comics from Heritage Auctions (example using scraping).
+ * Fetch comics from Heritage Auctions.
  */
 function fetchHeritageComics($url) {
-    $comics = [];
+    $htmlContent = @file_get_contents($url); // Fetch the page content
+    if (!$htmlContent) {
+        error_log("Failed to fetch HTML from $url");
+        return [];
+    }
 
-    // Scrape data using Simple HTML DOM
-    $html = file_get_html($url);
-    foreach ($html->find('.auction-item') as $item) {
+    $dom = new DOMDocument();
+    @$dom->loadHTML($htmlContent);
+    $xpath = new DOMXPath($dom);
+
+    $comics = [];
+    $items = $xpath->query("//div[contains(@class, 'auction-item')]"); // Update selector to match actual website structure
+
+    foreach ($items as $item) {
+        $title = $xpath->query(".//div[contains(@class, 'item-title')]", $item)->item(0);
+        $price = $xpath->query(".//div[contains(@class, 'price')]", $item)->item(0);
+
         $comics[] = [
-            'title' => $item->find('.item-title', 0)->plaintext,
+            'title' => $title ? trim($title->nodeValue) : 'N/A',
             'description' => 'Heritage Auction Comic',
             'seller' => 'Heritage Auctions',
-            'price' => filter_var($item->find('.price', 0)->plaintext, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+            'price' => $price ? filter_var($price->nodeValue, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0,
             'rating' => null,
             'category' => 'premium',
             'url' => $url,
-        ];
-    }
-
-    return $comics;
-}
-
-/**
- * Fetch comics from League of Comic Geeks.
- */
-function fetchLeagueOfComics($url) {
-    $comics = [];
-
-    // Scrape or call API (example assumes API support)
-    $response = file_get_contents($url . '/api/v1/comics/top');
-    $data = json_decode($response, true);
-
-    foreach ($data as $item) {
-        $comics[] = [
-            'title' => $item['title'],
-            'description' => $item['description'] ?? 'Top comic from League of Comic Geeks.',
-            'seller' => 'League of Comic Geeks',
-            'price' => $item['price'] ?? null,
-            'rating' => $item['rating'] ?? null,
-            'category' => 'top',
-            'url' => $item['url'],
         ];
     }
 
@@ -131,7 +120,11 @@ function saveComicToDatabase($conn, $comic) {
         $comic['category'],
         $comic['url']
     );
-    $stmt->execute();
+
+    if (!$stmt->execute()) {
+        error_log("Failed to save comic: " . $stmt->error);
+    }
+
     $stmt->close();
 }
 
