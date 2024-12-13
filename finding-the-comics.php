@@ -13,7 +13,7 @@ try {
 }
 
 // Include the view to render the page
-require_once 'view-finding-the-comics.php';
+require_once 'view-finding-the-comic.php';
 
 require_once 'view-footer.php'; // Include the footer file
 ?>
