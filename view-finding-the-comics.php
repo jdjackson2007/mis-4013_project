@@ -28,6 +28,11 @@
             height: 200px;
             object-fit: cover;
         }
+        .no-comics-message {
+            margin-top: 50px;
+            color: #666;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -62,12 +67,12 @@
             if (!empty($comicsList)) {
                 foreach ($comicsList as $comic) {
                     ?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-6">
                         <div class="card h-100">
                             <img src="https://via.placeholder.com/300x200.png?text=Comic+Cover" class="card-img-top" alt="Comic Cover">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($comic['Comics_Title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($comic['Comics_Description']); ?></p>
+                                <p class="card-text"><?php echo nl2br(htmlspecialchars($comic['Comics_Description'])); ?></p>
                                 <p><strong>Seller:</strong> <?php echo htmlspecialchars($comic['Comics_Seller']); ?></p>
                                 <p><strong>Price:</strong> $<?php echo number_format($comic['Comics_Price'], 2); ?></p>
                                 <p><strong>Rating:</strong> <?php echo htmlspecialchars($comic['Comics_Rating'] ?? 'N/A'); ?></p>
@@ -79,7 +84,11 @@
                 }
             } else {
                 // Display a fallback message if no comics are found
-                echo "<p class='text-center'>No comics available at the moment. Please check back later!</p>";
+                ?>
+                <div class="col-12 text-center no-comics-message">
+                    <p>No comics available at the moment. Please check back later!</p>
+                </div>
+                <?php
             }
             ?>
         </div>
