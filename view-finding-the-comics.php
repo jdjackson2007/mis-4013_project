@@ -6,22 +6,27 @@
     <title>Finding the Comics</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #e9ecef;
+            background: url('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582317527i/24395239.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
         }
         .container {
             margin: 20px auto;
             max-width: 900px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
         .comic {
             margin-bottom: 20px;
             padding: 20px;
-            background: #f9f9f9;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             transition: 0.3s ease;
         }
@@ -29,10 +34,16 @@
             transform: translateY(-5px);
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
         }
+        h1 {
+            font-family: 'Comic Neue', cursive;
+            font-size: 2.5em;
+            color: #007bff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
         footer {
             text-align: center;
             padding: 10px;
-            background: #343a40;
+            background: rgba(0, 0, 0, 0.8);
             color: white;
         }
         footer a {
