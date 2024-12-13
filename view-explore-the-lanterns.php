@@ -18,8 +18,6 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Tippy.js CSS for Tooltips -->
-    <link href="https://unpkg.com/tippy.js@6/dist/tippy.css" rel="stylesheet">
     <style>
         body {
             background-image: url('https://geekscovery.com/wp-content/uploads/2020/05/lantern-corps-970x545-1.jpg');
@@ -48,7 +46,6 @@ try {
         }
         .lantern-card .card-title {
             font-size: 1.5rem;
-            color: #000; /* Title color changed to black */
         }
         h1.display-4 {
             color: #ffd700; /* Bright yellow for the title */
@@ -90,21 +87,19 @@ try {
     <!-- Lanterns Section -->
     <div class="row">
         <?php 
-        // Background images for each corps
         $backgrounds = [
             'Green Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dfqj-d92d9f74-331a-4a8a-b286-df8b3748e7f4.jpg',
             'Sinestro Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6deur-997df727-4538-4375-82ba-a743017873fa.jpg',
             'Red Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dc5w-90f39292-92d8-4486-a909-27b6d5479d6c.jpg',
             'Blue Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2012/09/05/447873_blue-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'Indigo Tribe' => 'https://img00.deviantart.net/56e9/i/2014/085/f/b/indigo_tribe_wallpaper_by_laffler-d7bomvh.jpg',
-            'Star Sapphire Corps' => 'https://th.bing.com/th/id/R.ed0c35e97502f16d3e34fb0b968947a4?rik=wXhkHWXxDJElyA&riu=http%3a%2f%2fpre01.deviantart.net%2fa8cb%2fth%2fpre%2ff%2f2016%2f166%2f0%2f8%2fstar_sapphires_wallpapers_by_laffler-da6dawc.jpg&ehk=f6AO0cCtvLJroi%2b9Ueam%2fLiutJhY8lF7F0EZF%2bu1cSc%3d&risl=&pid=ImgRaw&r=0',
+            'Star Sapphire Corps' => 'http://pre01.deviantart.net/a8cb/th/pre/f/2016/166/0/8/star_sapphires_wallpapers_by_laffler-da6dawc.jpg',
             'Orange Lantern Corps' => 'https://www.desktopbackground.org/download/800x600/2015/12/15/1057780_orange-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'Black Lantern Corps' => 'https://www.desktopbackground.org/p/2014/09/10/822692_black-lantern-corps-wallpapers-by-laffler-on-deviantart_1024x647_h.jpg',
             'White Lantern Corps' => 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/66a83b6c-e211-4afb-b88a-5f4700f49d57/da6dctl-a77e4109-3a8c-4102-b5a1-cc03b7c8ab8c.jpg',
         ];
 
         while ($lantern = $lanternsList->fetch_assoc()) { 
-            // Use the first corps for the image
             $corpsList = explode(',', $lantern['corps_name']);
             $primaryCorps = trim($corpsList[0]);
             $backgroundImage = $backgrounds[$primaryCorps] ?? 'https://via.placeholder.com/1200x600.png?text=Lantern+Corps';
@@ -116,10 +111,9 @@ try {
                     <h3 class="card-title text-warning"><?php echo htmlspecialchars($lantern['name']); ?></h3>
                     <p><strong>Alias:</strong> <?php echo htmlspecialchars($lantern['alias'] ?: 'Unknown'); ?></p>
                     <p><strong>Corps:</strong> <?php echo htmlspecialchars($lantern['corps_name'] ?: 'Unknown Corps'); ?></p>
-                    <p><strong>Earth Version:</strong> <?php echo htmlspecialchars($lantern['earth_version'] ?: 'None'); ?></p>
+                    <p><strong>Bio:</strong> <?php echo htmlspecialchars($lantern['bio'] ?: 'No bio available.'); ?></p>
                     <p><strong>First Appearance:</strong> <?php echo htmlspecialchars($lantern['first_appearance'] ?: 'Unknown'); ?></p>
                     <p><strong>Status:</strong> <?php echo htmlspecialchars($lantern['status'] ?: 'Active'); ?></p>
-                    <p><strong>Classes:</strong> <?php echo htmlspecialchars($lantern['classes'] ?: 'None'); ?></p>
                 </div>
             </div>
         </div>
@@ -129,4 +123,10 @@ try {
 
 <!-- Footer Section -->
 <footer>
-    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="f
+    <p>&copy; <?php echo date('Y'); ?> Lantern Corps Universe. Powered by <i class="fas fa-lightbulb text-warning"></i> Imagination and <i class="fas fa-code text-success"></i> Code.</p>
+</footer>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
