@@ -1,17 +1,12 @@
 <?php
-require_once 'util-db.php'; // Include the database connection utility
+require_once 'util-db.php'; 
 
-/**
- * Fetch all Corps data with required joins
- * 
- * @return mysqli_result The result set containing Corps data
- * @throws Exception if the query fails
- */
+
 function getCorpsData() {
     try {
-        $conn = get_db_connection(); // Get the database connection
+        $conn = get_db_connection(); 
 
-        // SQL query to fetch all Corps details
+      
         $query = "
             SELECT 
                 c.Corps_ID, 
@@ -37,7 +32,7 @@ function getCorpsData() {
                 c.Corps_Name;
         ";
 
-        // Prepare and execute the query
+        
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             throw new Exception("Failed to prepare SQL statement: " . $conn->error);
@@ -46,21 +41,21 @@ function getCorpsData() {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // If no data is found, throw an exception
+        
         if ($result->num_rows === 0) {
             throw new Exception("No Corps data found in the database.");
         }
 
-        // Close the connection and return the result set
+        
         $conn->close();
         return $result;
 
     } catch (Exception $e) {
-        // Close the connection if it exists
+       
         if (isset($conn) && $conn->ping()) {
             $conn->close();
         }
-        // Re-throw the exception with a meaningful message
+        
         throw new Exception("Error fetching Corps data: " . $e->getMessage());
     }
 }
