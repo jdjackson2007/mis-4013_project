@@ -46,33 +46,29 @@ function fetchAndStoreComics() {
  * Fetch comics from Midtown Comics.
  */
 function fetchMidtownComics($url) {
-    $htmlContent = @file_get_contents($url); // Fetch the page content
-    if (!$htmlContent) {
-        error_log("Failed to fetch HTML from $url");
-        return [];
-    }
-
+    $comics = [];
+    $html = file_get_contents($url);
     $dom = new DOMDocument();
-    @$dom->loadHTML($htmlContent); // Suppress warnings for invalid HTML
+    @$dom->loadHTML($html);
     $xpath = new DOMXPath($dom);
 
-    $comics = [];
-    $items = $xpath->query("//div[contains(@class, 'comic-item')]"); // Update selector to match actual website structure
-
+    // Update these XPath queries based on the website's structure
+    $items = $xpath->query("//div[@class='comic-item']");
     foreach ($items as $item) {
-        $title = $xpath->query(".//div[contains(@class, 'comic-title')]", $item)->item(0);
-        $description = $xpath->query(".//div[contains(@class, 'comic-description')]", $item)->item(0);
-        $price = $xpath->query(".//div[contains(@class, 'price')]", $item)->item(0);
+        $title = $xpath->query(".//h3[@class='comic-title']", $item);
+        $price = $xpath->query(".//span[@class='price']", $item);
 
-        $comics[] = [
-            'title' => $title ? trim($title->nodeValue) : 'N/A',
-            'description' => $description ? trim($description->nodeValue) : 'No description',
-            'seller' => 'Midtown Comics',
-            'price' => $price ? filter_var($price->nodeValue, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0,
-            'rating' => null,
-            'category' => 'top',
-            'url' => $url,
-        ];
+        if ($title->length > 0 && $price->length > 0) {
+            $comics[] = [
+                'title' => trim($title->item(0)->nodeValue),
+                'description' => 'Description not available', // Update if available
+                'seller' => 'Midtown Comics',
+                'price' => filter_var($price->item(0)->nodeValue, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION),
+                'rating' => null,
+                'category' => 'top',
+                'url' => $url,
+            ];
+        }
     }
 
     return $comics;
