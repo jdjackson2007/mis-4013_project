@@ -118,6 +118,11 @@ function fetchHeritageComics($url) {
  */
 function saveComicToDatabase($conn, $comic) {
     $stmt = $conn->prepare("INSERT INTO comics_table (Comics_Title, Comics_Description, Comics_Seller, Comics_Price, Comics_Rating, Comics_Category, Comics_URL) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE Comics_Updated_At = CURRENT_TIMESTAMP");
+
+    if (!$stmt) {
+        die("Statement preparation failed: " . $conn->error);
+    }
+
     $stmt->bind_param(
         "sssdsis",
         $comic['title'],
@@ -130,12 +135,12 @@ function saveComicToDatabase($conn, $comic) {
     );
 
     if (!$stmt->execute()) {
-        error_log("Failed to save comic: " . $stmt->error);
+        echo "Failed to save comic: " . $comic['title'] . "<br>";
+        echo "Error: " . $stmt->error . "<br>";
+    } else {
+        echo "Saved comic: " . $comic['title'] . "<br>";
     }
 
     $stmt->close();
 }
 
-// Call the fetch function
-fetchAndStoreComics();
-?>
