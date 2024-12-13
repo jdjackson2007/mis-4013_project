@@ -17,7 +17,8 @@ function getComicsFromDatabase($filter = null, $value = null, $sortBy = 'Comics_
     $order = strtoupper($order) === 'DESC' ? 'DESC' : 'ASC';
 
     // Base query
-    $query = "SELECT Comics_Title, Comics_Description, Comics_Seller, Comics_Price, Comics_Rating, Comics_URL FROM comics_table";
+   $query = "SELECT Comics_Title, Comics_Description, Comics_Seller, Comics_Price, Comics_Rating, Comics_URL 
+          FROM lantern_corps.comics_table";
 
     // Add filtering condition if specified
     if ($filter && $value) {
