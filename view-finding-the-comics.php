@@ -11,7 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             background: url('https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582317527i/24395239.jpg') no-repeat center center fixed;
-            background-size: 100% 100%;
+            background-size: cover;
             margin: 0;
             padding: 0;
         }
@@ -33,6 +33,22 @@
         .comic:hover {
             transform: translateY(-5px);
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .dc-subscription {
+            background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSUxW0VU63KMpx7-CEDi6ZjhVwLCvtyK3qigy6VyD5JXvKpOEuOBv8O7TJF1Fao89a0c5WDgCVruiM4TzTgZ_847xvl8jcS4V9xDHwn1r1__mD71Bj5gB7DE41fn_ktMLxOjO7B4cTJpK_/s1600/Comics.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .new-comics {
+            background: url('https://preview.redd.it/which-green-lantern-comic-book-series-released-in-2023-had-v0-2va866tbznrb1.jpg?width=1080&crop=smart&auto=webp&s=13b1417d760a8ab1d5628ee6df006f6d5e8d933b') no-repeat center center;
+            background-size: cover;
+        }
+        .collectible-comics {
+            background: url('https://static1.cbrimages.com/wordpress/wp-content/uploads/2023/06/collage-maker-27-jun-2023-06-15-pm-43.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .comic-grading {
+            background: url('https://s3.amazonaws.com/cgccomics-production/gallery/GreenLantern_9_9-2.jpg') no-repeat center center;
+            background-size: cover;
         }
         h1 {
             font-family: 'Comic Neue', cursive;
@@ -57,7 +73,7 @@
         <h1 class="text-center">Finding the Comics</h1>
         <?php if (!empty($comicsList)) { ?>
             <?php foreach ($comicsList as $comic) { ?>
-                <div class="comic">
+                <div class="comic <?php echo htmlspecialchars($comic['title'] === 'DC Comics Subscription' ? 'dc-subscription' : ($comic['title'] === 'Where to Buy New Comics' ? 'new-comics' : ($comic['title'] === 'Where to Find Collectible Comics' ? 'collectible-comics' : ($comic['title'] === 'Understanding Comic Grading' ? 'comic-grading' : '')))); ?>">
                     <h2><?php echo htmlspecialchars($comic['title']); ?></h2>
                     <p><?php echo htmlspecialchars($comic['description']); ?></p>
                     <?php if (!empty($comic['details'])) { ?>
