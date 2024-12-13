@@ -1,6 +1,10 @@
 <?php
 require_once 'util-db.php'; // Database connection utility
 
+require_once 'fetch-finding-the-comics.php';
+
+fetchAndStoreComics();
+
 /**
  * Fetch all comics from the database.
  * 
