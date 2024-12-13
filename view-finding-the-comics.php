@@ -76,8 +76,8 @@
                         <ul>
                             <?php foreach ($comic['details'] as $detail) { ?>
                                 <li>
-                                    <a href="<?php echo htmlspecialchars($detail); ?>" target="_blank" class="text-primary">
-                                        Visit <?php echo htmlspecialchars(parse_url($detail, PHP_URL_HOST)); ?>
+                                    <a href="<?php echo htmlspecialchars($detail['url']); ?>" target="_blank" class="text-primary">
+                                        <?php echo htmlspecialchars($detail['name']); ?>
                                     </a>
                                 </li>
                             <?php } ?>
