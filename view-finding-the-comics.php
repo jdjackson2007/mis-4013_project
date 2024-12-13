@@ -26,12 +26,20 @@
             border-bottom: 1px solid #ddd;
             margin-bottom: 20px;
             padding-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            transition: transform 0.3s;
+        }
+        .comic:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         }
         .comic:last-child {
             border-bottom: none;
         }
         .comic-title {
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -53,6 +61,10 @@
             color: #f8d347;
             text-decoration: none;
         }
+        .text-primary {
+            font-size: 1.1em;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +79,7 @@
                     <?php if (!empty($comic['details'])) { ?>
                         <ul>
                             <?php foreach ($comic['details'] as $detail) { ?>
-                                <li><a href="<?php echo htmlspecialchars($detail); ?>" target="_blank" class="text-primary">Visit</a></li>
+                                <li><a href="<?php echo htmlspecialchars($detail); ?>" target="_blank" class="text-primary">Visit <?php echo htmlspecialchars(parse_url($detail, PHP_URL_HOST)); ?></a></li>
                             <?php } ?>
                         </ul>
                     <?php } ?>
@@ -95,3 +107,19 @@
                 opacity: 0,
                 y: 50,
                 duration: 1,
+                stagger: 0.3
+            });
+
+            // Fun hover animation for comic titles
+            document.querySelectorAll('.comic-title').forEach(title => {
+                title.addEventListener('mouseenter', () => {
+                    gsap.to(title, { scale: 1.1, duration: 0.3 });
+                });
+                title.addEventListener('mouseleave', () => {
+                    gsap.to(title, { scale: 1, duration: 0.3 });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
