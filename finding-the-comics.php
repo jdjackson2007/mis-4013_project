@@ -1,5 +1,5 @@
 <?php
-require_once 'model-finding-the-comic.php'; // Include the model to fetch comic data
+require_once 'model-finding-the-comics.php'; // Include the model to fetch comic data
 require_once 'view-header.php'; // Include the header file
 
 $pageTitle = "Finding the Comics"; // Page title
@@ -13,7 +13,7 @@ try {
 }
 
 // Include the view to render the page
-require_once 'view-finding-the-comic.php';
+require_once 'view-finding-the-comics.php';
 
 require_once 'view-footer.php'; // Include the footer file
 ?>
