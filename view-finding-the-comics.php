@@ -5,35 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finding the Comics</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
-        .navbar {
-            margin-bottom: 20px;
-        }
-        .card {
-            margin-bottom: 20px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #333;
-            color: white;
-        }
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-        .no-comics-message {
-            margin-top: 50px;
-            color: #666;
-            font-size: 1.2rem;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktHqDqKZQzPT1mEuhFGzGJwGIl8eHkGHpDHsNKGJk" crossorigin="anonymous">
 </head>
 <body>
     <!-- Navigation -->
@@ -84,11 +56,7 @@
                 }
             } else {
                 // Display a fallback message if no comics are found
-                ?>
-                <div class="col-12 text-center no-comics-message">
-                    <p>No comics available at the moment. Please check back later!</p>
-                </div>
-                <?php
+                echo "<p class='text-center no-comics-message'>No comics available at the moment. Please check back later!</p>";
             }
             ?>
         </div>
@@ -100,6 +68,6 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Q2YtYsmv1rv9Q6AOmmW2TqDDiRpnE4lQ7U1R6S02A5S4e3UiM8W62G5aP1Trb8ts" crossorigin="anonymous"></script>
 </body>
 </html>
