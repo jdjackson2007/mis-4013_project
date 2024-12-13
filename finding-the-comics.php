@@ -1,18 +1,26 @@
 <?php
-require_once("model-finding-the-comics.php"); // Load the correct model for this page
+// Include necessary files
+require_once 'model-finding-the-comics.php'; // Model for fetching data
+include 'view-header.php'; // Header
 
-$pageTitle = "Finding the Comics"; // Set the page title
-include "view-header.php"; // Include the header
+// Set page title
+$pageTitle = "Finding the Comics";
 
-// Fetch comic data
 try {
+    // Fetch data from the model
     $comicSources = getComicSources();
     $topLanternComics = getTopLanternComics();
     $premiumComics = getPremiumComics();
 } catch (Exception $e) {
-    die("Error loading data: " . $e->getMessage());
+    // Log the error and display a user-friendly message
+    error_log("Error fetching comic data: " . $e->getMessage());
+    $comicSources = $topLanternComics = $premiumComics = [];
+    $errorMessage = "We encountered an error while loading the comics. Please try again later.";
 }
 
-require_once 'view-finding-the-comics.php'; // Include the view for displaying comics
-include "view-footer.php"; // Include the footer
+// Include the view
+require_once 'view-finding-the-comics.php';
+
+// Include the footer
+include 'view-footer.php';
 ?>
