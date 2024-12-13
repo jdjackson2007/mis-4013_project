@@ -56,6 +56,23 @@
                                     <a href="<?php echo htmlspecialchars($detail['url']); ?>" target="_blank">
                                         <?php echo htmlspecialchars($detail['name']); ?>
                                     </a>
-                                    <?php if ($comic['title'] === 'Understanding Comic Grading') { ?>
-                                        <p style="margin-top: 5px; font-size: 0.9em;">
-                                            The CGC grading system rates comics from 0.5 (Poor) to 10.0 (Gem Mint). Factors include cover quality, page preservation, and structural integrity. High grades increase a comic's value significantly, making grading essential for collectible comics
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    <?php } ?>
+                    <?php if ($comic['title'] === 'Understanding Comic Grading') { ?>
+                        <p style="margin-top: 15px; font-size: 0.9em;">
+                            The CGC grading system rates comics from 0.5 (Poor) to 10.0 (Gem Mint). Key factors include cover quality, page preservation, and structural integrity. Higher grades can significantly increase the value of collectible comics, making professional grading essential for serious collectors.
+                        </p>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+        <?php } else { ?>
+            <p>No comics available at the moment. Please check back later!</p>
+        <?php } ?>
+    </div>
+    <footer>
+        &copy; <?php echo date('Y'); ?> Lantern Corps Universe. All rights reserved.
+    </footer>
+</body>
+</html>
